@@ -5,5 +5,11 @@
 using namespace std;
 
 
+class Walmart {
+
+
+};
+
+
 #endif
-#pragma once
+
