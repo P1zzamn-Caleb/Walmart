@@ -1,9 +1,9 @@
-#ifndef _Walmart_H
-#define _Walmart_H
+#ifndef _WALMART_H
+#define _WALMART_H
 
 #include <iostream>
 using namespace std;
 
 
-
 #endif
+#pragma once
