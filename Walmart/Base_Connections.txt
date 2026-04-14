@@ -1,0 +1,30 @@
+#This file is a base file, the first 
+#number is the total number of vertices
+#after that the first number in each line
+# is the vertice pointing
+# followed by the vertices its pointing to
+# in the actual input the vertices it points to will
+# be followed by the weight between the two
+23
+0 1 -
+1 7 8 -
+2 3 8 -
+3 4 9 -
+4 5 10 -
+5 6 11 -
+6 12 -
+7 8 13 -
+8 9 14 -
+9 10 15 -
+10 11 16 -
+11 12 17 -
+12 18 -
+13 14 20 -
+14 15 20 -
+15 16 -
+17 18 -
+18 19 21 -
+19 22 -
+20 15 -
+21 -
+22 21 -
