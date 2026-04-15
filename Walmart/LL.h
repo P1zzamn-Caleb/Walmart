@@ -20,7 +20,7 @@ public:
 
 };
 
-class adJacencyList
+class adjacencyList
 {
 	int size;
 public:
