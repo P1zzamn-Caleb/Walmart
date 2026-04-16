@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="LL.h" />
     <ClInclude Include="Queue.h" />
   </ItemGroup>
