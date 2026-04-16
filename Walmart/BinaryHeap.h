@@ -9,10 +9,13 @@ private:
     int* heapArray;
     int allocationSize;
     int heapSize;
+    int back;
 
     void ResizeArray();
     void PercolateUp(int nodeIndex);
     void PercolateDown(int nodeIndex);
+    int insert(int e);
+    bool isFull();
 
 public:
     void MaxHeap();
