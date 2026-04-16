@@ -9,7 +9,7 @@ void BinaryHeap:: PercolateUp(int nodeIndex) {
         int parentIndex = (nodeIndex - 1) / 2;
 
         // Check for a violation of the max-heap property
-        if (heapArray[nodeIndex] <= heapArray[parentIndex]) {
+        if (heapArray[nodeIndex] >= heapArray[parentIndex]) {
             // No violation, so percolate up is done.
             return;
         }
@@ -25,8 +25,6 @@ void BinaryHeap:: PercolateUp(int nodeIndex) {
     }
 }
 
-
-
 void BinaryHeap::PercolateDown(int nodeIndex) {
     int childIndex = 2 * nodeIndex + 1;
     int value = heapArray[nodeIndex];
@@ -37,7 +35,7 @@ void BinaryHeap::PercolateDown(int nodeIndex) {
         int maxIndex = -1;
         int i = 0;
         while (i < 2 && i + childIndex < heapSize) {
-            if (heapArray[i + childIndex] > maxValue) {
+            if (heapArray[i + childIndex] < maxValue) {
                 maxValue = heapArray[i + childIndex];
                 maxIndex = i + childIndex;
             }
@@ -86,5 +84,17 @@ BinaryHeap::~BinaryHeap() {
 void BinaryHeap::MaxHeap() {
     allocationSize = 1;
     heapArray = new int[allocationSize];
+    back = 0;
     heapSize = 0;
+}
+
+bool BinaryHeap::isFull() {
+    return allocationSize == back;
+}
+int BinaryHeap::insert(int e) {
+    if (isFull()) {
+        ResizeArray(); // might need ->this
+    }
+    heapArray[back++] = e;
+
 }
