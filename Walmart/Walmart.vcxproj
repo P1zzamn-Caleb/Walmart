@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="LL.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="Walmart.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="LL.cpp" />
     <ClCompile Include="Queue.cpp" />
-    <ClCompile Include="Walmart.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Base_Connections.txt" />
