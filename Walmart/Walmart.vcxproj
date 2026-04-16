@@ -19,11 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LL.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Walmart.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="driver.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="LL.cpp" />
+    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Walmart.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Base_Connections.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
