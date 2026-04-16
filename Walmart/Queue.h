@@ -1,4 +1,4 @@
-#ifndef _QUEUE_H
+/*#ifndef _QUEUE_H
 #define _QUEUE_H
 
 #include <iostream>
@@ -19,4 +19,4 @@ public:
 	void Print()const;
 };
 
-#endif
+#endif*/

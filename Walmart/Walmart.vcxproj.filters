@@ -21,6 +21,9 @@
     <ClInclude Include="LL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Walmart.cpp">
@@ -32,10 +35,14 @@
     <ClCompile Include="LL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Base_Connections.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="ScooterWeights.txt" />
   </ItemGroup>
 </Project>

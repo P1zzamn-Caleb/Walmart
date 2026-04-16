@@ -7,26 +7,27 @@
 # be followed by the weight between the two
 # weights will be 30 or above and 30 will be subtracted
 # from each weight once inputted into the program
+# -1 indicates no more connection
 23
-0 1 -
-1 7 8 -
-2 3 8 -
-3 4 9 -
-4 5 10 -
-5 6 11 -
-6 12 -
-7 8 13 -
-8 9 14 -
-9 10 15 -
-10 11 16 -
-11 12 17 -
-12 18 -
-13 14 20 -
-14 15 20 -
-15 16 -
-17 18 -
-18 19 21 -
-19 22 -
-20 15 -
-21 -
-22 21 -
+0 1 -1
+1 7 8 -1
+2 3 8 -1
+3 4 9 -1
+4 5 10 -1
+5 6 11 -1
+6 12 -1
+7 8 13 -1
+8 9 14 -1
+9 10 15 -1
+10 11 16 -1
+11 12 17 -1
+12 18 -1
+13 14 20 -1
+14 15 20 -1
+15 16 -1
+17 18 -1
+18 19 21 -1
+19 22 -1
+20 15 -1
+21 -1
+22 21 -1

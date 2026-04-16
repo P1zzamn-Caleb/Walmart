@@ -1,4 +1,4 @@
-#include "Queue.h"
+/*#include "Queue.h"
 #include <iostream>
 using namespace std;
 
@@ -53,4 +53,4 @@ bool Queue::DeQ(int& e) {
 		// e = data[front++ % MAX];
 		success = true;
 	}
-	return success;
+	return success;*/

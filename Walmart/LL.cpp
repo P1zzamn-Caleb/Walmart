@@ -8,75 +8,33 @@
 //********************************************************************************
 #include "LL.h"
 
-bool LL::Remove(int e)
-{
-	bool removed = false;
-	if (head == nullptr)
-	{
-	}
-	else if (head->weight == e)
-	{
-		Node* temp = head;
-		head = head->next;
-		delete temp;
-		temp = nullptr;
-		removed = true;
-	}
-	else
-	{
-		Node* curr = head;
-		Node* prev = head;
-		while (curr->next != nullptr && curr->weight != e)
-		{
-			prev = curr;
-			curr = curr->next;
-		}
-		if (curr->weight == e)
-		{
-			prev->next = curr->next;
-			delete curr;
-			curr = nullptr;
-			removed = true;
-		}
-	}
-	return removed;
-}
 //********************************************************************************
 // Author: Caleb Ellis
-// Name: Search
-// Purpose: Searches for e
-// Incoming: weight e
-// Outgoing: true or false based on if it is found
-// Return: true or false based on if it is found
-//********************************************************************************
-bool LL::Search(int e)const
-{
-	bool found = false;
-	if (head != nullptr)
-	{
-		Node* curr = head;
-		while (curr->weight != e && curr->next != nullptr)
-		{
-			curr = curr->next;
-		}
-		if (curr->weight == e)
-			found = true;
-	}
-	return found;
-}
-
-//********************************************************************************
-// Author: Caleb Ellis
-// Name: InsertAtFront
-// Purpose: Inserts at the front of the LL
+// Name: InsertWeight
+// Purpose: Inserts weights in order in LL
 // Incoming: int e
 // Outgoing: updated LL
 // Return: none
 //********************************************************************************
-void LL::InsertAtFront(int e)
-{
-	head = new Node(e, head);
+void LL::Insert(int e, int c) {
+	if (head == nullptr || e < head->weight) //2 cases where head could change
+		head = new Node(e, c, head);
+	else {                                   //insert in the middle or at the end
+		//loop to get to the insertion point
+		Node* prev = head;
+		Node* current = head;
+		while (current != nullptr && e > current->weight) { ///stopped when e (16) < current->data(20)
+			prev = current;
+			current = current->next;
+		}
+		//code to actually create a new Node and set pointers accurately
+		if (current != nullptr && e == current->weight)
+			cout << "NO DUPES" << endl;
+		else
+			prev->next = new Node(e, c, current);
+	}
 }
+
 
 //********************************************************************************
 // Author: Caleb Ellis
@@ -91,7 +49,7 @@ void LL::Print()const
 
 	while (temp != nullptr)
 	{
-		cout << temp->weight << " ";
+		cout << temp->connection << " " << temp->weight << " ";
 		temp = temp->next;
 	}
 }
