@@ -2,8 +2,6 @@
 #include <fstream>
 
 #include "LL.h"
-#include "Queue.h"
-#include "Walmart.h"
 
 using namespace std;
 const string FILE_NAME = "ScooterWeights.txt";
