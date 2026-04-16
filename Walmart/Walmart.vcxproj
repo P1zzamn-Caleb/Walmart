@@ -20,13 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LL.h" />
-    <ClInclude Include="Queue.h" />
     <ClInclude Include="Walmart.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="LL.cpp" />
-    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Walmart.cpp" />
   </ItemGroup>
   <ItemGroup>
