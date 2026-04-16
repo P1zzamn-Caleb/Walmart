@@ -5,6 +5,8 @@
 # followed by the vertices its pointing to
 # in the actual input the vertices it points to will
 # be followed by the weight between the two
+# weights will be 30 or above and 30 will be subtracted
+# from each weight once inputted into the program
 23
 0 1 -
 1 7 8 -
