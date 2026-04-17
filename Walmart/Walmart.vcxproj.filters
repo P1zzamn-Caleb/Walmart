@@ -40,5 +40,8 @@
     <Text Include="Base_Connections.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="ScooterWeights.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

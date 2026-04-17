@@ -9,7 +9,7 @@ const string FILE_NAME = "ScooterWeights.txt";
 int main() {
 	ifstream graphData;
 	int numVertices = 0, thisVertice =-1, 
-		connectionWeight =-1, connectionVertice =-1;
+		connectionWeight =-1, connectionVertice =0;
 	
 
 	graphData.open(FILE_NAME);
@@ -27,13 +27,13 @@ int main() {
 	for (int i = 0; i < numVertices;i++)
 	{
 		graphData >> thisVertice;
-		while (connectionVertice!=-1)
+		while (true)
 		{
-			vertices[thisVertice].Insert(connectionWeight, connectionVertice);
 
 			graphData >> connectionVertice;
+			if (connectionVertice == -1) break;
 			graphData >> connectionWeight;
-
+			vertices[thisVertice].Insert(connectionWeight, connectionVertice);
 		}
 	}
 
