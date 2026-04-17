@@ -21,13 +21,12 @@
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
     <ClInclude Include="LL.h" />
-    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
+    <ClCompile Include="BinaryHeapDriver.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="LL.cpp" />
-    <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Base_Connections.txt" />
