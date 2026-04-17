@@ -11,16 +11,18 @@ private:
     int heapSize;
     int back;
 
-    void ResizeArray();
-    void PercolateUp(int nodeIndex);
-    void PercolateDown(int nodeIndex);
-    int insert(int e);
-    bool isFull();
-
 public:
     void MaxHeap();
-    virtual ~BinaryHeap();
+    ~BinaryHeap();
+
+    void PercolateUp(int nodeIndex);
+    void PercolateDown(int nodeIndex);
+    void ResizeArray();
+
+    bool isFull();
+    int insert(int e);
+    int remove();
 };
 
-
 #endif
+
