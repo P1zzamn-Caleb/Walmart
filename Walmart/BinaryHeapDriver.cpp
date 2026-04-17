@@ -7,7 +7,7 @@ using namespace std;
 
 const string FILE_NAME = "ScooterWeights.txt";
 
-int old_main() {
+int main() {
     ifstream graphData;
     int numVertices = 0;
     int thisVertice = 0;
