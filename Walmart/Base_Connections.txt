@@ -7,6 +7,8 @@
 # be followed by the weight between the two
 # weights will be 30 or above and 30 will be subtracted
 # from each weight once inputted into the program
+# the last 2 numbers will be the starting point 
+# followed by the end point
 23
 0 1 -
 1 7 8 -
@@ -30,3 +32,5 @@
 20 15 -
 21 -
 22 21 -
+
+0 21
