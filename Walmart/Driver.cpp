@@ -9,7 +9,8 @@ const string FILE_NAME = "ScooterWeights.txt";
 int main() {
 	ifstream graphData;
 	int numVertices = 0, thisVertice =-1, 
-		connectionWeight =-1, connectionVertice =0;
+		connectionWeight =-1, connectionVertice =0,
+		startVertice =0, endVertice=0;
 	
 
 	graphData.open(FILE_NAME);
@@ -37,6 +38,8 @@ int main() {
 		}
 	}
 
+	graphData >> startVertice >> endVertice;
+
 	graphData.close();
 	for (int j = 0; j < numVertices;j++)
 	{
@@ -44,7 +47,11 @@ int main() {
 		vertices[j].Print();
 		cout << endl;
 	}
+
+
 		
 
 	return 0;
 }
+
+

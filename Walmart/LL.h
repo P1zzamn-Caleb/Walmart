@@ -18,6 +18,7 @@ class Node
 public:
 	Node(int w, int c, Node* node) : weight(w), connection(c), next(node) {};
 	friend class LL;
+	friend class BinaryHeap;
 };
 
 class LL

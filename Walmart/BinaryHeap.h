@@ -2,6 +2,7 @@
 #define _BINARYHEAP_H
 
 #include <iostream>
+#include "LL.h"
 using namespace std;
 
 class BinaryHeap {
