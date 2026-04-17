@@ -17,6 +17,8 @@
 // Return: none
 //********************************************************************************
 void LL::Insert(int e, int c) {
+	if (e == -1 || c == -1) //exits the function if e or c are -1
+		return;
 	if (head == nullptr || e < head->weight) //2 cases where head could change
 		head = new Node(e, c, head);
 	else {                                   //insert in the middle or at the end
