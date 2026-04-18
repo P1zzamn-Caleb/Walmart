@@ -17,7 +17,7 @@
 // Return: void
 // Source: adapted from Dijkstra's in Zybook
 //********************************************************************************
-void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex)
+void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex, const string realWorldV[])
 {
 	const int INFINITE = 999999;
 
@@ -59,16 +59,14 @@ void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex)
 				int weight = temp->getWeight();
 
 				//updates the distance if a shorter path is found
-				cout << "Trying: " << currentVertex << " -> " << adjV
-					<< " newDist = " << dist[currentVertex] + weight << endl;
-				// 
-				//dist[adjV] = dist[currentVertex] + weight;
-				int newDist = dist[currentVertex] + weight;
-				if (!visited[adjV] && newDist < dist[adjV])
+
+				/*cout << "Trying: " << currentVertex << " -> " << adjV
+					<< " newDist = " << dist[currentVertex] + weight << endl; */
+				if (!visited[adjV] && dist[currentVertex] + weight < dist[adjV])
 				{
-					dist[adjV] = newDist;
+					dist[adjV] = dist[currentVertex] + weight;
 					prev[adjV] = currentVertex;
-					heap.insert(adjV, newDist);
+					heap.insert(adjV, dist[adjV]);
 				}
 				temp = temp->getNext(); // move to next neighbor
 			}
@@ -76,7 +74,7 @@ void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex)
 	}
 	// prints final shortest path result
 	cout << "Shortest distance: " << dist[endVertex] << endl;
-	printPath(startVertex, endVertex, prev);
+	printPath(startVertex, endVertex, prev, realWorldV);
 
 	delete[] dist;
 	delete[] visited;
@@ -95,7 +93,7 @@ void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex)
 // Return: void
 // Source: adapted from Dijkstra's and Getting the Shortest Path in Zybook
 //********************************************************************************
-void printPath(int start, int end, int* prev) {
+void printPath(int start, int end, int* prev, const string realWorldV[]) {
 	if (prev[end] == -1 && start != end) {
 		cout << "No path exists." << endl;
 		return;
@@ -104,7 +102,7 @@ void printPath(int start, int end, int* prev) {
 
 	cout << "Path: ";
 	while (current != -1) {
-		cout << current;
+		cout << realWorldV[current];
 		if (current == start)
 			break;
 

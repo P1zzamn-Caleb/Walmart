@@ -174,9 +174,9 @@ int main() {
 		cout << "Enter destination aisle: ";
 		cin >> end;
 
-		cout << endl << "Calculating shortest path from " << start << " to " << end << "..." << endl;
-		cout << "RESULT: ";
-		shortestPath(vertices, numVertices, start, end);
+		cout << endl << "Calculating shortest path from " << LOCATIONS[start] << " to " << LOCATIONS[end] << "..." << endl;
+		cout << "RESULT: " << endl;
+		shortestPath(vertices, numVertices, start, end, LOCATIONS);
 		cout << endl;
 
 		cout << endl << "Would you like to try another route? (y/n): ";
