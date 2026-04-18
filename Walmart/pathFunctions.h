@@ -6,4 +6,5 @@
 
 void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex, const string realWorldV[]);
 void printPath(int startVertex, int endVertex, int* previous, const string realWorldV[]);
+void printPathRecursive(int start, int current, int* prev, const string realWorldV[]);
 #endif
