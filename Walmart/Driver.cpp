@@ -98,6 +98,7 @@ int main() {
 				break;
 			}
 			graphData >> connectionWeight;
+			connectionWeight -= 30;
 			vertices[thisVertex].Insert(connectionWeight, connectionVertex);
 
 			cout << " Connected to Aisle " << connectionVertex << " | Weight: " << connectionWeight << endl;
