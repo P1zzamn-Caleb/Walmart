@@ -8,12 +8,13 @@ using namespace std;
 class BinaryHeap {
 private:
     int* heapArray;
+    int* connectionArr;
     int allocationSize;
     int heapSize;
     int back;
 
 public:
-    void MaxHeap();
+    void MinHeap();
     ~BinaryHeap();
 
     void PercolateUp(int nodeIndex);
@@ -21,8 +22,8 @@ public:
     void ResizeArray();
 
     bool isFull();
-    int insert(int e);
-    int remove();
+    int insert(int e, int c);
+    int remove(int& minVertice);
 };
 
 #endif

@@ -9,6 +9,7 @@
 #define _LL_H
 #include <iostream>
 using namespace std;
+#include "BinaryHeap.h"
 
 class Node
 {
@@ -24,11 +25,17 @@ public:
 class LL
 {
 	Node* head;
+	int distance;
+	int whoChangedMe;
 public:
-	LL() : head(nullptr) {};
+	LL() : head(nullptr), distance(0), whoChangedMe(0) {};
 
 	void Insert(int e, int c);
 	void Print()const;
+	void insertWeights(BinaryHeap& heap, LL whoChangedObject);
+	void adjustDistance(int d, int who);
+
+	int getWhoChangedMe();
 };
 
 

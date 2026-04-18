@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "LL.h"
+#include "BinaryHeap.h"
 
 using namespace std;
 const string FILE_NAME = "ScooterWeights.txt";
@@ -15,17 +16,16 @@ const string FILE_NAME = "ScooterWeights.txt";
 //Return: 	int (program exit result)
 //*************************************************************************************
 void LocationsMenu();
+void graph(int numVertices, int startVertice, int endVertice, LL list[]);
 
 int main() {
 	
 	ifstream graphData;
 	
-	int numVertices = 0, 
-	thisVertice = -1, 
-	connectionWeight = -1, 
-	connectionVertice = 0,
-	startVertice = 0, 
-	endVertice = 0;
+	int numVertices = 0,
+		thisVertex = -1,
+		connectionWeight = -1,
+		connectionVertex = 0;
 
 //**************************************************************************************
 //Name: OpenFile
@@ -84,23 +84,23 @@ int main() {
 	{
 		graphData >> thisVertex;
 		cout << "Processing Aisle " << thisVertex << endl;
-		
+
 		while (true)
 		{
 			graphData >> connectionVertex;
-			
+
 			if (connectionVertex == -1) {
 				cout << " End of connections for Aisle " << thisVertex << endl;
 				break;
 			}
 			graphData >> connectionWeight;
+			connectionWeight -= 30;
 			vertices[thisVertex].Insert(connectionWeight, connectionVertex);
 
 			cout << " Connected to Aisle " << connectionVertex << " | Weight: " << connectionWeight << endl;
 		}
 		cout << endl;
 	}
-	graphData.close();	
 
 //**************************************************************************************
 //Name: PrintGraph
@@ -138,13 +138,17 @@ int main() {
 
 	do {
 		cout << endl << "Enter starting aisle: ";
-		cin >> start;
+		graphData >> start;
 
 		cout << "Enter destination aisle: ";
-		cin >> end;
+		graphData >> end;
+
+		graphData.close();
 
 		cout << endl << "Calculating shortest path from " << start << " to " << end << "..." << endl;
 		cout << "RESULT: Shortest path computing (integration pending)." << endl;
+
+		graph(numVertices, start, end, vertices);
 
 		cout << endl << "Would you like to try another route? (y/n): ";
 		cin >> choice;
@@ -202,3 +206,33 @@ void LocationsMenu()
 }
 
 
+void graph(int numVertices, int startVertice, int endVertice, LL list[])
+{
+	BinaryHeap weightHeap;
+
+	int min = 0, minVertice = 0;
+
+	weightHeap.MinHeap();
+
+
+	list[startVertice].insertWeights(weightHeap, list[startVertice]);
+	min = weightHeap.remove(minVertice);
+	while (minVertice != endVertice && min!=-1)
+	{
+		list[min].adjustDistance(min, minVertice);
+		list[minVertice].insertWeights(weightHeap, list[list[minVertice].getWhoChangedMe()]);
+		min = weightHeap.remove(minVertice);
+	}
+
+	cout << "Min Distance: " << min << endl;
+
+	int vert = minVertice;
+
+	while (vert != startVertice)
+	{
+		cout << vert << " ";
+		vert = list[vert].getWhoChangedMe();
+	}
+
+
+}

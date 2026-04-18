@@ -25,8 +25,12 @@ void BinaryHeap:: PercolateUp(int nodeIndex) {
         else {
             // Swap heapArray[nodeIndex] and heapArray[parentIndex]
             int temp = heapArray[nodeIndex];
+            int tempCon = connectionArr[nodeIndex];
             heapArray[nodeIndex] = heapArray[parentIndex];
             heapArray[parentIndex] = temp;
+            connectionArr[nodeIndex] = connectionArr[parentIndex];
+            connectionArr[parentIndex] = tempCon;
+
 
             // Continue the loop from the parent node
             nodeIndex = parentIndex;
@@ -47,6 +51,7 @@ void BinaryHeap:: PercolateUp(int nodeIndex) {
 void BinaryHeap::PercolateDown(int nodeIndex) {
     int childIndex = 2 * nodeIndex + 1;
     int value = heapArray[nodeIndex];
+    int con = connectionArr[nodeIndex];
 
     while (childIndex < heapSize) {
         // Find the max among the node and all the node's children
@@ -68,8 +73,11 @@ void BinaryHeap::PercolateDown(int nodeIndex) {
         else {
             // Swap heapArray[nodeIndex] and heapArray[maxIndex]
             int temp = heapArray[nodeIndex];
+            int tempCon = connectionArr[nodeIndex];
             heapArray[nodeIndex] = heapArray[maxIndex];
             heapArray[maxIndex] = temp;
+            connectionArr[nodeIndex] = connectionArr[maxIndex];
+            connectionArr[maxIndex] = tempCon;
 
             // Continue loop from the max index node
             nodeIndex = maxIndex;
@@ -90,15 +98,19 @@ void BinaryHeap::PercolateDown(int nodeIndex) {
 void BinaryHeap::ResizeArray() {
     int newAllocationSize = allocationSize * 2;
     int* newArray = new int[newAllocationSize];
+    int* newConArr = new int[newAllocationSize];
     if (newArray) {
         // Copy from existing array to new array
         for (int i = 0; i < heapSize; i++) {
             newArray[i] = heapArray[i];
+            newConArr[i] = connectionArr[i];
         }
 
         // Delete old array and set pointer to new
         delete[] heapArray;
         heapArray = newArray;
+        delete[] connectionArr;
+        connectionArr = newConArr;
 
         // Update allocation size
         allocationSize = newAllocationSize;
@@ -116,6 +128,7 @@ void BinaryHeap::ResizeArray() {
 //********************************************************************************
 BinaryHeap::~BinaryHeap() {
     delete[] heapArray;
+    delete[] connectionArr;
 }
 
 //********************************************************************************
@@ -127,9 +140,10 @@ BinaryHeap::~BinaryHeap() {
 // Outgoing: allocationSize, heapArray, back, and heapSize are initialized
 // Return: void
 //********************************************************************************
-void BinaryHeap::MaxHeap() {
+void BinaryHeap::MinHeap() {
     allocationSize = 1;
     heapArray = new int[allocationSize];
+    connectionArr = new int[allocationSize];
     back = 0;
     heapSize = 0;
 }
@@ -154,16 +168,16 @@ bool BinaryHeap::isFull() {
 // Outgoing: heapArray, heapSize, and back may be updated
 // Return: int - the current heap size after insertion
 //********************************************************************************
-int BinaryHeap::insert(int e) {
+int BinaryHeap::insert(int e, int c) {
     if (isFull()) {
         ResizeArray();
     }
-
     heapArray[heapSize] = e;   
+    connectionArr[heapSize] = c;
     PercolateUp(heapSize);    
     heapSize++;
     back = heapSize;
-
+    
     return heapSize;         
 }
 
@@ -175,15 +189,18 @@ int BinaryHeap::insert(int e) {
 // Outgoing: heapArray, heapSize, and back may be updated
 // Return: int - the minimum value removed, or -1 if the heap is empty
 //********************************************************************************
-int BinaryHeap::remove() {
+int BinaryHeap::remove(int& minVertice) {
     if (heapSize == 0) {
         cout << "Heap is empty." << endl;
         return -1;
     }
-
     int minValue = heapArray[0];
+    minVertice = connectionArr[0];
+
+    cout << heapSize << " size " << heapArray[0] << " weight " << connectionArr[0] << " connectoin" << endl;
 
     heapArray[0] = heapArray[heapSize - 1];
+    connectionArr[0] = connectionArr[heapSize - 1];
     heapSize--;
     back = heapSize;
 
