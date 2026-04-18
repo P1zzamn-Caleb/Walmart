@@ -14,6 +14,7 @@ const string FILE_NAME = "ScooterWeights.txt";
 //Outgoing: Displays graph structure and navigation results
 //Return: 	int (program exit result)
 //*************************************************************************************
+void LocationsMenu();
 
 int main() {
 	
@@ -37,7 +38,6 @@ int main() {
 	if (!graphData.is_open())
 	{
 		cout << ": Error opening file -> " << FILE_NAME << endl;
-		cout << "Program Ending......." << endl;
 		return 1;
 	}
 
@@ -62,8 +62,7 @@ int main() {
 //Return: none
 //**************************************************************************************
 	graphData >> numVertices;
-	cout << "Total aisles (vertices): " << numVertices << endl;
-	cout << Building graph connections..." << endl << endl;
+	cout << "Total aisles (vertices): " << numVertices << endl << endl;
 
 //**************************************************************************************
 //Name: InitializeGraph
@@ -166,6 +165,13 @@ cout << endl << "Program terminated successfully." << endl;
 return 0;
 }
 
+//**************************************************************************************
+//Name: LocationsMenu
+//Purpose: Displays all available aisle options for user selection
+//Incoming: none
+//Outgoing: Console output (list of aisle options)
+//Return: none
+//**************************************************************************************
 void LocationsMenu()
 {
 	cout << endl << "****************************" << endl;
