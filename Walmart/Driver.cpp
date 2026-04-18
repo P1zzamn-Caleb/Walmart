@@ -166,4 +166,33 @@ cout << endl << "Program terminated successfully." << endl;
 return 0;
 }
 
+void LocationsMenu()
+{
+	cout << endl << "****************************" << endl;
+	cout << "Location Options:" << endl;
+	cout << "\"0\" - Entrance" << endl;
+	cout << "\"1\" - Bread" << endl;
+	cout << "\"2\" - Produce" << endl;
+	cout << "\"3\" - Checkout" << endl;
+	cout << "\"5\" - Health" << endl;
+	cout << "\"6\" - Personal Care" << endl;
+	cout << "\"7\" - Frozen" << endl;
+	cout << "\"8\" - Women's Clothing" << endl;
+	cout << "\"9\" - Men's Clothing" << endl;
+	cout << "\"10\" - Party Supplies" << endl;
+	cout << "\"11\" - Kitchen" << endl;
+	cout << "\"12\" - Garden" << endl;
+	cout << "\"13\" - Deli" << endl;
+	cout << "\"14\" - Alcohol" << endl;
+	cout << "\"15\" - Shoes" << endl;
+	cout << "\"16\" - Kid's Clothing" << endl;
+	cout << "\"17\" - Arts & Crafts" << endl;
+	cout << "\"18\" - Home/Furniture" << endl;
+	cout << "\"19\" - Auto" << endl;
+	cout << "\"20\" - Dairy" << endl;
+	cout << "\"21\" - Toys" << endl;
+	cout << "\"22\" - Sports" << endl;
+	cout << "****************************" << endl;
+}
+
 
