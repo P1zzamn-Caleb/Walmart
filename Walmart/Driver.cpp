@@ -1,11 +1,35 @@
 #include <iostream>
 #include <fstream>
-//#include "LL.h"
 #include "pathFunctions.h"
 
 using namespace std;
 const string FILE_NAME = "ScooterWeights.txt";
 
+const string LOCATIONS[23] = {
+	"Entrance",
+	"Bread",
+	"Produce",
+	"Checkout",
+	"Self-checkout",
+	"Health",
+	"Personal Care",
+	"Frozen",
+	"Women's Clothing",
+	"Men's Clothing",
+	"Party Supplies",
+	"Kitchen",
+	"Garden",
+	"Deli",
+	"Alcohol",
+	"Shoes",
+	"Kid's Clothing",
+	"Arts & Crafts",
+	"Home/Furniture",
+	"Auto",
+	"Dairy",
+	"Toys",
+	"Sports"
+};
 void LocationsMenu();
 //*************************************************************************************
 //Author: Jay Goodroe
@@ -52,7 +76,7 @@ int main() {
 //Return: none
 //**************************************************************************************
 	cout << "*******************************************************" << endl;
-	cout << " 			WALMART WEIGHTED GRAPH NAVIGATION           " << endl;
+	cout << "          WALMART WEIGHTED GRAPH NAVIGATION" << endl;
 	cout << "*******************************************************" << endl;
 
 	cout << "Loading store layout...." << endl;
@@ -77,6 +101,8 @@ int main() {
 //**************************************************************************************
 	LL* vertices = new LL[numVertices];
 
+
+	               //// NOT SURE THIS IS NECESSARY ANYMORE
 //**************************************************************************************
 //Name: BuildAdjacencyList
 //Purpose: Reads file and forms adjacency list graph
@@ -115,7 +141,7 @@ int main() {
 //Return: none
 //**************************************************************************************
 	cout << "*******************************************************" << endl;
-	cout << " 			FINAL WAREHOUSE MAP (ADJACENCY LIST)        " << endl;
+	cout << "         FINAL WAREHOUSE MAP (ADJACENCY LIST)" << endl;
 	cout << "*******************************************************" << endl;
 
 	for (int j = 0; j < numVertices; j++)
@@ -124,7 +150,7 @@ int main() {
 		vertices[j].Print();
 		cout << endl;
 	}
-
+	                   /// END OF NOT SURE THIS IS NECESSARY ANYMORE
 //**************************************************************************************
 //Name: UserNavigationMenu
 //Purpose: Allows user to input start and end aisles for navigation
@@ -136,10 +162,9 @@ int main() {
 	char choice;
 
 	cout << endl << "********************************************************" << endl;
-	cout << " 							NAVIGATION MENU						"  << endl;
-	cout << endl << "********************************************************" << endl;
+	cout <<"                    NAVIGATION MENU"  << endl;
+	cout << "********************************************************" << endl;
 
-	//cout << "Available aisles: 0 to " << numVertices - 1 << endl;
 	LocationsMenu();
 
 	do {
@@ -184,10 +209,15 @@ void LocationsMenu()
 {
 	cout << endl << "****************************" << endl;
 	cout << "Location Options:" << endl;
-	cout << "\"0\" - Entrance" << endl;
+	for (int i = 0; i < 23; i++)
+	{
+		cout << "\"" << i << "\" - " << LOCATIONS[i] << endl;
+	}
+	/*cout << "\"0\" - Entrance" << endl;
 	cout << "\"1\" - Bread" << endl;
 	cout << "\"2\" - Produce" << endl;
 	cout << "\"3\" - Checkout" << endl;
+	cout << "\"4\" - Self-checkout" << endl;
 	cout << "\"5\" - Health" << endl;
 	cout << "\"6\" - Personal Care" << endl;
 	cout << "\"7\" - Frozen" << endl;
@@ -205,7 +235,7 @@ void LocationsMenu()
 	cout << "\"19\" - Auto" << endl;
 	cout << "\"20\" - Dairy" << endl;
 	cout << "\"21\" - Toys" << endl;
-	cout << "\"22\" - Sports" << endl;
+	cout << "\"22\" - Sports" << endl; */
 	cout << "****************************" << endl;
 }
 

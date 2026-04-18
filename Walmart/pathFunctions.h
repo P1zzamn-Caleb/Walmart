@@ -4,10 +4,6 @@
 #include "LL.h"
 #include "BinaryHeap.h"
 
-/*void sortingAlgorithm()
-{
-
-} */
 void shortestPath(LL* vertices, int numVertices, int startVertex, int endVertex);
 void printPath(int startVertex, int endVertex, int* previous);
 #endif
