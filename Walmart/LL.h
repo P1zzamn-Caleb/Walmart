@@ -12,10 +12,11 @@ using namespace std;
 
 class Node
 {
+public:
 	Node* next;
 	int weight;
 	int connection;
-public:
+
 	Node(int w, int c, Node* node) : weight(w), connection(c), next(node) {};
 	friend class LL;
 	friend class BinaryHeap;
@@ -23,8 +24,9 @@ public:
 
 class LL
 {
-	Node* head;
 public:
+	Node* head;
+
 	LL() : head(nullptr) {};
 
 	void Insert(int e, int c);

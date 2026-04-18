@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="LL.h" />
   </ItemGroup>
   <ItemGroup>

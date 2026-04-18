@@ -1,29 +1,32 @@
-#ifndef _BINARYHEAP_H
-#define _BINARYHEAP_H
+#ifndef _BINARY_HEAP_H
+#define _BINARY_HEAP_H
 
-#include <iostream>
-#include "LL.h"
-using namespace std;
+struct HeapNode {
+    int vertex;
+    int distance;
+};
 
 class BinaryHeap {
 private:
-    int* heapArray;
+    HeapNode* heapArray;
     int allocationSize;
     int heapSize;
-    int back;
-
-public:
-    void MaxHeap();
-    ~BinaryHeap();
 
     void PercolateUp(int nodeIndex);
     void PercolateDown(int nodeIndex);
     void ResizeArray();
 
+public:
+    BinaryHeap();
+    ~BinaryHeap();
+
     bool isFull();
-    int insert(int e);
-    int remove();
+    bool isEmpty();
+    void insert(int vertex, int distance);
+    HeapNode remove();
 };
 
 #endif
+
+
 

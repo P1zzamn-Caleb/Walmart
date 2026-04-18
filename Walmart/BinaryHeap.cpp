@@ -4,93 +4,16 @@ using namespace std;
 
 //********************************************************************************
 // Author: Jay Goodroe
-// Name: PercolateUp
-// Purpose: Moves a newly inserted element upward in the heap until
-//          the min-heap property is restored.
-// Incoming: int nodeIndex - the index of the node to move upward
-// Outgoing: heapArray may be rearranged
-// Return: void
-// // Reference: This function was from the zybook.
-//********************************************************************************
-void BinaryHeap:: PercolateUp(int nodeIndex) {
-    while (nodeIndex > 0) {
-        // Compute the parent node's index
-        int parentIndex = (nodeIndex - 1) / 2;
-
-        // Check for a violation of the max-heap property
-        if (heapArray[nodeIndex] >= heapArray[parentIndex]) {
-            // No violation, so percolate up is done.
-            return;
-        }
-        else {
-            // Swap heapArray[nodeIndex] and heapArray[parentIndex]
-            int temp = heapArray[nodeIndex];
-            heapArray[nodeIndex] = heapArray[parentIndex];
-            heapArray[parentIndex] = temp;
-
-            // Continue the loop from the parent node
-            nodeIndex = parentIndex;
-        }
-    }
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: PercolateDown
-// Purpose: Moves the root element downward in the heap until the
-//          min-heap property is restored after a removal.
-// Incoming: int nodeIndex - the index of the node to move downward
-// Outgoing: heapArray may be rearranged
-// Return: void
-// Reference: This function was from the zybook.
-//********************************************************************************
-void BinaryHeap::PercolateDown(int nodeIndex) {
-    int childIndex = 2 * nodeIndex + 1;
-    int value = heapArray[nodeIndex];
-
-    while (childIndex < heapSize) {
-        // Find the max among the node and all the node's children
-        int maxValue = value;
-        int maxIndex = -1;
-        int i = 0;
-        while (i < 2 && i + childIndex < heapSize) {
-            if (heapArray[i + childIndex] < maxValue) {
-                maxValue = heapArray[i + childIndex];
-                maxIndex = i + childIndex;
-            }
-            i++;
-        }
-
-        // Check for a violation of the max-heap property
-        if (maxValue == value) {
-            return;
-        }
-        else {
-            // Swap heapArray[nodeIndex] and heapArray[maxIndex]
-            int temp = heapArray[nodeIndex];
-            heapArray[nodeIndex] = heapArray[maxIndex];
-            heapArray[maxIndex] = temp;
-
-            // Continue loop from the max index node
-            nodeIndex = maxIndex;
-            childIndex = 2 * nodeIndex + 1;
-        }
-    }
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
 // Name: ResizeArray
-// Purpose: Doubles the size of the heap array when it becomes full.
+// Purpose: Doubles heap array capacity when full.
 // Incoming: none
-// Outgoing: heapArray is resized and allocationSize is updated
+// Outgoing: heapArray replaced with larger array, allocationSize updated
 // Return: void
-// // Reference: This function was from the zybook.
 //********************************************************************************
 void BinaryHeap::ResizeArray() {
     int newAllocationSize = allocationSize * 2;
-    int* newArray = new int[newAllocationSize];
-    if (newArray) {
+    HeapNode* newArray = new HeapNode[newAllocationSize];
+
         // Copy from existing array to new array
         for (int i = 0; i < heapSize; i++) {
             newArray[i] = heapArray[i];
@@ -99,20 +22,16 @@ void BinaryHeap::ResizeArray() {
         // Delete old array and set pointer to new
         delete[] heapArray;
         heapArray = newArray;
-
-        // Update allocation size
         allocationSize = newAllocationSize;
-    }
 }
 
 //********************************************************************************
 // Author: Jay Goodroe
-// Name: ~BinaryHeap
-// Purpose: Destructor that releases the dynamically allocated heap array.
+// Name: ~BinaryHeap (Destructor)
+// Purpose: Frees dynamically allocated heap memory
 // Incoming: none
-// Outgoing: memory used by heapArray is freed
+// Outgoing: heapArray memory released
 // Return: none
-// Reference: This function was from my notes in the dynamic array class.
 //********************************************************************************
 BinaryHeap::~BinaryHeap() {
     delete[] heapArray;
@@ -120,17 +39,15 @@ BinaryHeap::~BinaryHeap() {
 
 //********************************************************************************
 // Author: Jay Goodroe
-// Name: MaxHeap
-// Purpose: Initializes the binary heap with a starting array size
-//          and sets counters to zero.
+// Name: BinaryHeap Constructor
+// Purpose: Initializes heap with default capacity and zero size
 // Incoming: none
-// Outgoing: allocationSize, heapArray, back, and heapSize are initialized
-// Return: void
+// Outgoing: heapArray allocated, heapSize and allocationSize initialized
+// Return: none
 //********************************************************************************
-void BinaryHeap::MaxHeap() {
-    allocationSize = 1;
-    heapArray = new int[allocationSize];
-    back = 0;
+BinaryHeap::BinaryHeap() {
+    allocationSize = 10;
+    heapArray = new HeapNode[allocationSize];
     heapSize = 0;
 }
 
@@ -148,48 +65,113 @@ bool BinaryHeap::isFull() {
 
 //********************************************************************************
 // Author: Jay Goodroe
-// Name: insert
-// Purpose: Inserts a new value into the min-heap and restores heap order.
-// Incoming: int e - the value to insert
-// Outgoing: heapArray, heapSize, and back may be updated
-// Return: int - the current heap size after insertion
+// Name: isEmpty
+// Purpose: Checks whether the heap array is empty.
+// Incoming: none
+// Outgoing: none
+// Return: bool - true if empty, false otherwise
 //********************************************************************************
-int BinaryHeap::insert(int e) {
-    if (isFull()) {
-        ResizeArray();
-    }
+bool BinaryHeap::isEmpty() {
+    return heapSize == 0;
+}
 
-    heapArray[heapSize] = e;   
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: insert
+// Purpose: Inserts a (vertex, distance) pair into min-heap and restores heap order
+// Incoming: vertex ID and distance value
+// Outgoing: heap array updated
+// Return: void
+//********************************************************************************
+void BinaryHeap::insert(int vertex, int distance) {
+    if (isFull()) 
+        ResizeArray(); 
+
+    heapArray[heapSize] = {vertex, distance };
     PercolateUp(heapSize);    
-    heapSize++;
-    back = heapSize;
-
-    return heapSize;         
+    heapSize++;        
 }
 
 //********************************************************************************
 // Author: Jay Goodroe
 // Name: remove
-// Purpose: Removes and returns the minimum value from the root of the heap.
+// Purpose: Removes and returns node with smallest distance from heap root
 // Incoming: none
-// Outgoing: heapArray, heapSize, and back may be updated
-// Return: int - the minimum value removed, or -1 if the heap is empty
+// Outgoing: heap reordered after removal
+// Return: HeapNode containing vertex and distance
 //********************************************************************************
-int BinaryHeap::remove() {
+HeapNode BinaryHeap::remove() {
     if (heapSize == 0) {
-        cout << "Heap is empty." << endl;
-        return -1;
+        // cout << "Heap is empty." << endl;
+        return HeapNode{ -1, -1 };
     }
 
-    int minValue = heapArray[0];
+    HeapNode minNode = heapArray[0];
 
     heapArray[0] = heapArray[heapSize - 1];
     heapSize--;
-    back = heapSize;
 
     if (heapSize > 0) {
         PercolateDown(0);
     }
 
-    return minValue;
+    return minNode;
+}
+
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: PercolateUp
+// Purpose: Restores min-heap property after insertion
+// Incoming: index of inserted node
+// Outgoing: heap reordered if needed
+// Return: void
+// // Reference: This function was from the zybook.
+//********************************************************************************
+void BinaryHeap::PercolateUp(int index) {
+    while (index > 0) {
+        // Compute the parent node's index
+        int parent = (index - 1) / 2;
+
+        // Check for a violation of the max-heap property
+        if (heapArray[index].distance >= heapArray[parent].distance) {
+            // No violation, so percolate up is done.
+            break;
+        }
+        else {
+            // Swap heapArray[nodeIndex] and heapArray[parentIndex]
+            swap(heapArray[index], heapArray[parent]);
+            // Continue the loop from the parent node
+            index = parent;
+        }
+    }
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: PercolateDown
+// Purpose: Restores min-heap property after removal of root node
+// Incoming: index of root node
+// Outgoing: heap reordered if needed
+// Return: void
+// Reference: This function was from the zybook.
+//********************************************************************************
+void BinaryHeap::PercolateDown(int index) {
+    while (true) {
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+        int smallest = index;
+
+        if (left < heapSize && heapArray[left].distance < heapArray[smallest].distance)
+            smallest = left;
+
+        if (right < heapSize && heapArray[right].distance < heapArray[smallest].distance)
+            smallest = right;
+
+        if (smallest == index) break;
+
+        swap(heapArray[index], heapArray[smallest]);
+        index = smallest;
+    }
 }

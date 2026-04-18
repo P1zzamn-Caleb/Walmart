@@ -1,11 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include "LL.h"
+#include "Dijkstra.h"
 
 using namespace std;
 const string FILE_NAME = "ScooterWeights.txt";
 //*************************************************************************************
-//Author: Jay Goodroe
+//Author: Jay Goodroe, Chloe Byrd, Tori Dean, Caleb Ellis
 //Name: Main (Driver - Walmart Weighted Graph Navigation System)
 //Purpose: Entry point of program. Loads graph from file, builds
 //			adjacency list, displays graph structure, and allows
@@ -17,7 +18,31 @@ const string FILE_NAME = "ScooterWeights.txt";
 void LocationsMenu();
 
 int main() {
-	
+	string names[] = {
+	"Entrance",
+	"Bread",
+	"Produce",
+	"Checkout",
+	"Dairy",
+	"Toys",
+	"Sports",
+	"Auto",
+	"Clothing",
+	"Health",
+	"Personal Care",
+	"Frozen",
+	"Kitchen",
+	"Garden",
+	"Deli",
+	"Shoes",
+	"Kids Clothing",
+	"Arts & Crafts",
+	"Home",
+	"Party",
+	"Electronics",
+	"Unknown"
+	};
+
 	ifstream graphData;
 	
 	int numVertices = 0, 
@@ -82,21 +107,21 @@ int main() {
 //**************************************************************************************
 	for (int i = 0; i < numVertices; i++)
 	{
-		graphData >> thisVertex;
-		cout << "Processing Aisle " << thisVertex << endl;
+		graphData >> thisVertice;
+		cout << "Processing Aisle " << thisVertice << endl;
 		
 		while (true)
 		{
-			graphData >> connectionVertex;
+			graphData >> connectionVertice;
 			
-			if (connectionVertex == -1) {
-				cout << " End of connections for Aisle " << thisVertex << endl;
+			if (connectionVertice == -1) {
+				cout << " End of connections for Aisle " << thisVertice << endl;
 				break;
 			}
 			graphData >> connectionWeight;
-			vertices[thisVertex].Insert(connectionWeight, connectionVertex);
+			vertices[thisVertice].Insert(connectionWeight, connectionVertice);
 
-			cout << " Connected to Aisle " << connectionVertex << " | Weight: " << connectionWeight << endl;
+			cout << " Connected to Aisle " << connectionVertice << " | Weight: " << connectionWeight << endl;
 		}
 		cout << endl;
 	}
@@ -130,23 +155,26 @@ int main() {
 	int start, end;
 	char choice;
 
-	cout << endl << "********************************************************" << endl;
-	cout << " 							NAVIGATION MENU						"  << endl;
-	cout << endl << "********************************************************" << endl;
+	cout << endl << "========================================" << endl;
+	cout << "         NAVIGATION MENU" << endl;
+	cout << "========================================" << endl;
 
 	cout << "Available aisles: 0 to " << numVertices - 1 << endl;
 
 	do {
+		LocationsMenu(); // optional but GOOD for demo
+
 		cout << endl << "Enter starting aisle: ";
 		cin >> start;
 
 		cout << "Enter destination aisle: ";
 		cin >> end;
 
-		cout << endl << "Calculating shortest path from " << start << " to " << end << "..." << endl;
-		cout << "RESULT: Shortest path computing (integration pending)." << endl;
+		cout << endl << "Finding shortest path..." << endl;
 
-		cout << endl << "Would you like to try another route? (y/n): ";
+		dijkstra(vertices, numVertices, start, end);
+
+		cout << endl << "Try another route? (y/n): ";
 		cin >> choice;
 
 	} while (choice == 'y' || choice == 'Y');
