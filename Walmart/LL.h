@@ -32,7 +32,7 @@ public:
 
 	void Insert(int e, int c);
 	void Print()const;
-	void insertWeights(BinaryHeap& heap, LL whoChangedObject);
+	void insertWeights(BinaryHeap& heap, LL whoChangedObject, int w);
 	void adjustDistance(int d, int who);
 
 	int getWhoChangedMe();

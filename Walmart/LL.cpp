@@ -33,12 +33,14 @@ void LL::Print()const
 	}
 }
 
-void LL::insertWeights(BinaryHeap& heap, LL whoChangedObject)
+void LL::insertWeights(BinaryHeap& heap, LL whoChangedObject, int w)
 {
 	Node* temp = head;
 
 	while (temp != nullptr)
 	{
+		//cout << "changeDis " << whoChangedObject.distance << endl;
+		adjustDistance(temp->weight + whoChangedObject.distance, w);
 		heap.insert((temp->weight + whoChangedObject.distance), temp->connection);
 		temp = temp->next;
 	}
@@ -51,8 +53,8 @@ void LL::adjustDistance(int d, int who)
 	{
 		distance = d;
 		whoChangedMe = who;
+		cout << distance << " d " << whoChangedMe << " w " << endl;
 	}
-	cout << distance << " d " << whoChangedMe << " w " << endl;
 }
 
 int LL::getWhoChangedMe()

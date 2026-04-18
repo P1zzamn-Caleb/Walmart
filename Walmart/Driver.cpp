@@ -215,23 +215,25 @@ void graph(int numVertices, int startVertice, int endVertice, LL list[])
 	weightHeap.MinHeap();
 
 
-	list[startVertice].insertWeights(weightHeap, list[startVertice]);
+	list[startVertice].insertWeights(weightHeap, list[startVertice], startVertice);
 	min = weightHeap.remove(minVertice);
 	while (minVertice != endVertice && min!=-1)
 	{
 		list[min].adjustDistance(min, minVertice);
-		list[minVertice].insertWeights(weightHeap, list[list[minVertice].getWhoChangedMe()]);
+		list[minVertice].insertWeights(weightHeap, list[list[minVertice].getWhoChangedMe()], minVertice);
 		min = weightHeap.remove(minVertice);
 	}
 
 	cout << "Min Distance: " << min << endl;
 
-	int vert = minVertice;
+	int vert = endVertice;
 
 	while (vert != startVertice)
 	{
-		cout << vert << " ";
+		list[min].adjustDistance(min, minVertice);
+		cout << " vert " << vert << " start " << startVertice << endl;
 		vert = list[vert].getWhoChangedMe();
+		cout << " vert " << vert << " start " << startVertice << endl;
 	}
 
 
