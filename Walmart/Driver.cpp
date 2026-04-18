@@ -53,13 +53,8 @@ int main() {
 		startVertex = 0,
 		endVertex = 0;
 
-//**************************************************************************************
-//Name: OpenFile
+
 //Purpose: Opens input file containing graph data
-//Incoming: FILE_NAME constant
-//Outgoing: File stream opened or error message
-//Return: none
-//**************************************************************************************
 	graphData.open(FILE_NAME);
 	if (!graphData.is_open())
 	{
@@ -68,41 +63,25 @@ int main() {
 		return 1;
 	}
 
-//**************************************************************************************
-//Name: DisplayWelcome
+
 //Purpose: Shows program introduction message to user
-//Incoming: none
-//Outgoing: Console output
-//Return: none
-//**************************************************************************************
 	cout << "*******************************************************" << endl;
 	cout << "          WALMART WEIGHTED GRAPH NAVIGATION" << endl;
 	cout << "*******************************************************" << endl;
 
-	cout << "Loading store layout...." << endl;
+	cout << "Loading store layout...." << endl << endl;
 
-//**************************************************************************************
-//Name: ReadVertexCount
+
 //Purpose: Reads number of vertices from input file
-//Incoming: file stream
-//Outgoing: numVertices updated
-//Return: none
-//**************************************************************************************
 	graphData >> numVertices;
-	cout << "Total aisles (vertices): " << numVertices << endl;
-	cout << "Building graph connections..." << endl << endl;
+	cout << "Building graph connections..." << endl;
 
-//**************************************************************************************
-//Name: InitializeGraph
+
 //Purpose: Creates array of linked lists for adjacency representation 
-//Incoming: numVertices
-//Outgoing: dynamic LL array created
-//Return: none
-//**************************************************************************************
 	LL* vertices = new LL[numVertices];
 
 
-	               //// NOT SURE THIS IS NECESSARY ANYMORE
+/*/////////////////////// NOT NECESSARY ANYMORE, BUT WAS USEFUL FOR TESTS
 //**************************************************************************************
 //Name: BuildAdjacencyList
 //Purpose: Reads file and forms adjacency list graph
@@ -150,32 +129,31 @@ int main() {
 		vertices[j].Print();
 		cout << endl;
 	}
-	                   /// END OF NOT SURE THIS IS NECESSARY ANYMORE
-//**************************************************************************************
-//Name: UserNavigationMenu
-//Purpose: Allows user to input start and end aisles for navigation
-//Incoming: user input (start, end, choice)
-//Outgoing: Display navigation process (placeholder for shortest path)
-//Return: none
-//**************************************************************************************
-	int start, end;
-	char choice;
+	*//////////////////// END OF COMMENT
+	
 
-	cout << endl << "********************************************************" << endl;
-	cout <<"                    NAVIGATION MENU"  << endl;
-	cout << "********************************************************" << endl;
+
+//Purpose: Allows user to input start and end aisles for navigation with the choice to repeat
+	int start = -1, end = -1;
+	char choice = ' ';
 
 	LocationsMenu();
 
 	do {
-		cout << endl << "Enter starting aisle: ";
-		cin >> start;
+		do 
+		{
+			cout << endl << "Enter starting aisle: ";
+			cin >> start;
+		} while (start < 0 || start >= numVertices);
+		do {
+			cout << "Enter destination aisle: ";
+			cin >> end;
+		} while (end < 0 || end >= numVertices);
 
-		cout << "Enter destination aisle: ";
-		cin >> end;
+		cout << endl << "Calculating shortest path from "
+			<< LOCATIONS[start] << " to " << LOCATIONS[end] << "..." << endl;
 
-		cout << endl << "Calculating shortest path from " << LOCATIONS[start] << " to " << LOCATIONS[end] << "..." << endl;
-		cout << "RESULT: " << endl;
+		cout << endl << "RESULT: " << endl;
 		shortestPath(vertices, numVertices, start, end, LOCATIONS);
 		cout << endl;
 
@@ -184,13 +162,8 @@ int main() {
 
 	} while (choice == 'y' || choice == 'Y');
 
-//**************************************************************************************
-//Name: Cleanup
+
 //Purpose: Frees dynamically allocated memory
-//Incoming: vertices array
-//Outgoing: memory deallocated
-//Return: none
-//**************************************************************************************
 delete[] vertices;
 
 cout << endl << "Program terminated successfully." << endl;
@@ -213,29 +186,6 @@ void LocationsMenu()
 	{
 		cout << "\"" << i << "\" - " << LOCATIONS[i] << endl;
 	}
-	/*cout << "\"0\" - Entrance" << endl;
-	cout << "\"1\" - Bread" << endl;
-	cout << "\"2\" - Produce" << endl;
-	cout << "\"3\" - Checkout" << endl;
-	cout << "\"4\" - Self-checkout" << endl;
-	cout << "\"5\" - Health" << endl;
-	cout << "\"6\" - Personal Care" << endl;
-	cout << "\"7\" - Frozen" << endl;
-	cout << "\"8\" - Women's Clothing" << endl;
-	cout << "\"9\" - Men's Clothing" << endl;
-	cout << "\"10\" - Party Supplies" << endl;
-	cout << "\"11\" - Kitchen" << endl;
-	cout << "\"12\" - Garden" << endl;
-	cout << "\"13\" - Deli" << endl;
-	cout << "\"14\" - Alcohol" << endl;
-	cout << "\"15\" - Shoes" << endl;
-	cout << "\"16\" - Kid's Clothing" << endl;
-	cout << "\"17\" - Arts & Crafts" << endl;
-	cout << "\"18\" - Home/Furniture" << endl;
-	cout << "\"19\" - Auto" << endl;
-	cout << "\"20\" - Dairy" << endl;
-	cout << "\"21\" - Toys" << endl;
-	cout << "\"22\" - Sports" << endl; */
 	cout << "****************************" << endl;
 }
 
