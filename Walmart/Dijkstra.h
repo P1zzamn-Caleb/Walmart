@@ -1,4 +1,4 @@
-//********************************************************************************
+﻿//********************************************************************************
 // Author: Jay Goodroe & Caleb Ellis
 // Name: Dijkstra Shortest Path Algorithm
 // Purpose: Computes the shortest path from a starting vertex to all other
@@ -71,14 +71,14 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
                 temp = temp->next;
             }
         }
+    }
 
-        if (dist[end] == INT_MAX) {
-            cout << "No path found." << endl;
-            delete[] dist;
-            delete[] prev;
-            delete[] visited;
-            return;
-        }
+    if (dist[end] == INT_MAX) {
+        cout << "No path found." << endl;
+        delete[] dist;
+        delete[] prev;
+        delete[] visited;
+        return;
     }
 
     cout << endl << "======================================" << endl;

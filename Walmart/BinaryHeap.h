@@ -1,5 +1,7 @@
 #ifndef _BINARY_HEAP_H
 #define _BINARY_HEAP_H
+#include <iostream>
+using namespace std;
 
 struct HeapNode {
     int vertex;
