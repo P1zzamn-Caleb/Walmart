@@ -5,15 +5,21 @@
 #include "LL.h"
 using namespace std;
 
+struct HeapNode {
+    int vertex;
+    int distance;
+};
+
 class BinaryHeap {
 private:
-    int* heapArray;
+    //int* heapArray; >>
+    HeapNode* heapArray;
     int allocationSize;
     int heapSize;
     int back;
 
 public:
-    void MaxHeap();
+    void MinHeap();
     ~BinaryHeap();
 
     void PercolateUp(int nodeIndex);
@@ -21,8 +27,9 @@ public:
     void ResizeArray();
 
     bool isFull();
-    int insert(int e);
-    int remove();
+    bool isEmpty();
+    int insert(int v, int w);
+    HeapNode remove();
 };
 
 #endif

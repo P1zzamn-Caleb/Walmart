@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryHeap.h" />
+    <ClInclude Include="pathFunctions.h" />
     <ClInclude Include="LL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="BinaryHeapDriver.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="pathFunctions.cpp" />
     <ClCompile Include="LL.cpp" />
   </ItemGroup>
   <ItemGroup>

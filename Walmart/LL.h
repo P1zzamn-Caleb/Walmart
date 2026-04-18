@@ -17,6 +17,9 @@ class Node
 	int connection;
 public:
 	Node(int w, int c, Node* node) : weight(w), connection(c), next(node) {};
+	Node* getNext()const;
+	int getWeight()const;
+	int getConnection()const;
 	friend class LL;
 	friend class BinaryHeap;
 };
@@ -26,9 +29,10 @@ class LL
 	Node* head;
 public:
 	LL() : head(nullptr) {};
-
+	~LL();
 	void Insert(int e, int c);
 	void Print()const;
+	Node* getHead()const;
 };
 
 

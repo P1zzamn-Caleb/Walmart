@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include "LL.h"
+//#include "LL.h"
+#include "pathFunctions.h"
 
 using namespace std;
 const string FILE_NAME = "ScooterWeights.txt";
+
+void LocationsMenu();
 //*************************************************************************************
 //Author: Jay Goodroe
 //Name: Main (Driver - Walmart Weighted Graph Navigation System)
@@ -19,12 +22,12 @@ int main() {
 	
 	ifstream graphData;
 	
-	int numVertices = 0, 
-	thisVertice = -1, 
-	connectionWeight = -1, 
-	connectionVertice = 0,
-	startVertice = 0, 
-	endVertice = 0;
+	int numVertices = 0,
+		thisVertex = -1,
+		connectionWeight = -1,
+		connectionVertex = 0,
+		startVertex = 0,
+		endVertex = 0;
 
 //**************************************************************************************
 //Name: OpenFile
@@ -63,7 +66,7 @@ int main() {
 //**************************************************************************************
 	graphData >> numVertices;
 	cout << "Total aisles (vertices): " << numVertices << endl;
-	cout << Building graph connections..." << endl << endl;
+	cout << "Building graph connections..." << endl << endl;
 
 //**************************************************************************************
 //Name: InitializeGraph
@@ -135,7 +138,8 @@ int main() {
 	cout << " 							NAVIGATION MENU						"  << endl;
 	cout << endl << "********************************************************" << endl;
 
-	cout << "Available aisles: 0 to " << numVertices - 1 << endl;
+	//cout << "Available aisles: 0 to " << numVertices - 1 << endl;
+	LocationsMenu();
 
 	do {
 		cout << endl << "Enter starting aisle: ";
@@ -145,7 +149,9 @@ int main() {
 		cin >> end;
 
 		cout << endl << "Calculating shortest path from " << start << " to " << end << "..." << endl;
-		cout << "RESULT: Shortest path computing (integration pending)." << endl;
+		cout << "RESULT: ";
+		shortestPath(vertices, numVertices, start, end);
+		cout << endl;
 
 		cout << endl << "Would you like to try another route? (y/n): ";
 		cin >> choice;
@@ -166,6 +172,13 @@ cout << endl << "Program terminated successfully." << endl;
 return 0;
 }
 
+//Author: Tori Dean
+//Name: LocationsMenu
+//Purpose: Provide the user with the names of aisles/sections and their vertices.
+//		   They will reference it to pick their locations as integers.
+//Incoming: none
+//Outgoing: Displays a list of aisles/sections with their vertice reference.
+//Return: 	none
 void LocationsMenu()
 {
 	cout << endl << "****************************" << endl;
