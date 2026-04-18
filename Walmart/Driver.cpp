@@ -8,7 +8,7 @@ const string FILE_NAME = "ScooterWeights.txt";
 
 void LocationsMenu();
 //*************************************************************************************
-//Author: Jay Goodroe
+//Author(s): Jay Goodroe, Caleb Ellis, Tori Dean, Chloe Byrd
 //Name: Main (Driver - Walmart Weighted Graph Navigation System)
 //Purpose: Entry point of program. Loads graph from file, builds
 //			adjacency list, displays graph structure, and allows
@@ -30,7 +30,7 @@ int main() {
 		endVertex = 0;
 
 //**************************************************************************************
-//Name: OpenFile
+//Author(s): Caleb Ellis, Chloe Byrd
 //Purpose: Opens input file containing graph data
 //Incoming: FILE_NAME constant
 //Outgoing: File stream opened or error message
@@ -45,7 +45,7 @@ int main() {
 	}
 
 //**************************************************************************************
-//Name: DisplayWelcome
+//Author(s): Caleb Ellis, Chloe Byrd
 //Purpose: Shows program introduction message to user
 //Incoming: none
 //Outgoing: Console output
@@ -58,7 +58,7 @@ int main() {
 	cout << "Loading store layout...." << endl;
 
 //**************************************************************************************
-//Name: ReadVertexCount
+//Author(s): Caleb Ellis, Chloe Byrd
 //Purpose: Reads number of vertices from input file
 //Incoming: file stream
 //Outgoing: numVertices updated
@@ -69,7 +69,7 @@ int main() {
 	cout << "Building graph connections..." << endl << endl;
 
 //**************************************************************************************
-//Name: InitializeGraph
+//Author(s): Caleb Ellis
 //Purpose: Creates array of linked lists for adjacency representation 
 //Incoming: numVertices
 //Outgoing: dynamic LL array created
@@ -78,7 +78,7 @@ int main() {
 	LL* vertices = new LL[numVertices];
 
 //**************************************************************************************
-//Name: BuildAdjacencyList
+//Author(s): Caleb Ellis, Chloe Byrd
 //Purpose: Reads file and forms adjacency list graph
 //Incoming: file stream data
 //Outgoing: populated linked list graph structure
@@ -108,7 +108,7 @@ int main() {
 	graphData.close();	
 
 //**************************************************************************************
-//Name: PrintGraph
+//Author(s): Caleb Ellis, Chloe Byrd
 //Purpose: Displays final adjacency list representation of graph
 //Incoming: LL array
 //Outgoing: printed graph structure
@@ -126,7 +126,7 @@ int main() {
 	}
 
 //**************************************************************************************
-//Name: UserNavigationMenu
+//Author(s): Chloe Byrd, Tori Dean
 //Purpose: Allows user to input start and end aisles for navigation
 //Incoming: user input (start, end, choice)
 //Outgoing: Display navigation process (placeholder for shortest path)
@@ -160,19 +160,20 @@ int main() {
 	} while (choice == 'y' || choice == 'Y');
 
 //**************************************************************************************
-//Name: Cleanup
+//Author(s): Chloe Byrd
 //Purpose: Frees dynamically allocated memory
 //Incoming: vertices array
 //Outgoing: memory deallocated
 //Return: none
 //**************************************************************************************
-delete[] vertices;
+	delete[] vertices;
 
-cout << endl << "Program terminated successfully." << endl;
+	cout << endl << "Program terminated successfully." << endl;
 	
-return 0;
+	return 0;
 }
 
+//**************************************************************************************
 //Author: Tori Dean
 //Name: LocationsMenu
 //Purpose: Provide the user with the names of aisles/sections and their vertices.
