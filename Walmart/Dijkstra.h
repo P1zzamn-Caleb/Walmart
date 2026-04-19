@@ -26,6 +26,17 @@
 
 using namespace std;
 
+//********************************************************************************
+//Name: dijkstra
+//Purpose: Computes the shortest path from the starting vertex to a destination
+//        vertex using Dijkstra's Algorithm
+//Incoming: LL* graph (adjacency list)
+//          int numVertices (number of vertices)
+//          int start (starting vertex_
+//          int end (destination vertex)
+//Outgoing: Shows the output of the shortest distance and path
+//Return: None
+//********************************************************************************
 void dijkstra(LL* graph, int numVertices, int start, int end) {
 
     int* dist = new int[numVertices];
@@ -73,6 +84,10 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
         }
     }
 
+//********************************************************************************
+//Name: CheckPath
+//Purpose: Determines if a valid path exists to destination
+//********************************************************************************
     if (dist[end] == INT_MAX) {
         cout << "No path found." << endl;
         delete[] dist;
@@ -81,6 +96,10 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
         return;
     }
 
+//********************************************************************************
+//Name: DisplayResults
+//Purpose: Outputs shortest distance and path
+//********************************************************************************
     cout << endl << "======================================" << endl;
     cout << "        SHORTEST PATH RESULT" << endl;
     cout << "======================================" << endl << endl;
@@ -90,6 +109,10 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
     int path[100];
     int count = 0;
 
+//********************************************************************************
+//Name: BuildPath
+//Purpose: Reconstructs path from destination to start
+//********************************************************************************
     for (int v = end; v != -1; v = prev[v]) {
         path[count++] = v;
     }
@@ -107,6 +130,10 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
 
     cout << endl << "======================================" << endl ;
 
+//********************************************************************************
+//Name: Cleanup
+//Purpose:Frees dynamically allocated memory
+//********************************************************************************
     delete[] dist;
     delete[] prev;
     delete[] visited;
