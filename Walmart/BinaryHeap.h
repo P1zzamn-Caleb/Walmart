@@ -3,11 +3,31 @@
 #include <iostream>
 using namespace std;
 
+//********************************************************************************************
+//Name: HeapNode
+//Purpose: Stores a single element in the Binary Heap, containing a vertex and its associated
+//        distance value for priority comparison
+//Incoming: int vertex, int distance
+//Outgoing: Stores heap node data
+//Return: none
+//********************************************************************************************
+
 struct HeapNode {
     int vertex;
     int distance;
 };
 
+//********************************************************************************************
+//Name: BinaryHeap
+//Purpose: Frees dynamically allocated memory used by heap
+//Incoming: None
+//Outgoing: Deallocates heap memory
+//Return: None
+//********************************************************************************************
+
+//***************************
+//DESTRUCTOR
+//***************************
 class BinaryHeap {
 private:
     HeapNode* heapArray;
@@ -22,9 +42,40 @@ public:
     BinaryHeap();
     ~BinaryHeap();
 
+//********************************************************************************************
+//Name: isFull
+//Purpose: Checks if heap has reached maximum capacity
+//Incoming: None
+//Outgoing: Boolean result
+//Return: None
+//********************************************************************************************
     bool isFull();
+
+//********************************************************************************************
+//Name: isEmpty
+//Purpose: Checks if heap contains no elements
+//Incoming: None
+//Outgoing: Boolean result
+//Return: Bool
+//********************************************************************************************
     bool isEmpty();
+
+//********************************************************************************************
+//Name: insert
+//Purpose: Inserts a new vertex distance pair into the heap
+//Incoming: int vertex, int distance
+//Outgoing: Updated heap structure
+//Return: None
+//********************************************************************************************
     void insert(int vertex, int distance);
+
+//********************************************************************************************
+//Name: remove
+//Purpose: Removes and returns the minimum distance node from the heap
+//Incoming: None
+//Outgoing: Updated heap structure
+//Return: HeapNode (minimum element)
+//********************************************************************************************
     HeapNode remove();
 };
 
