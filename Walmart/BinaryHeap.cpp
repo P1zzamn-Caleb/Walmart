@@ -90,7 +90,7 @@ bool BinaryHeap<T>::isEmpty() {
 // Return: void
 //********************************************************************************
 template <class T>
-void BinaryHeap<T>::insert(int vertex, T distance) {
+void BinaryHeap<T>::insert(int vertex, int distance) {
     if (isFull()) 
         ResizeArray(); 
 
