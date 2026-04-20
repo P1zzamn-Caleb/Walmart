@@ -1,3 +1,12 @@
+//***********************************************************************************
+//Author: Chloe Byrd, Jay Goodroe, Caleb Ellis, and Tori Dean
+//Start Date: April 16, 2026
+//Name: CS 355 Walmart Graph Assignment - Binary Heap Implementation
+//Description: This file implements a templated Binary Heap used in  
+//        Dijkstra's algorithm for managing vertex-distance pairs. It 
+//        supports insertion, removal of minimu elements, dynamic resizing,
+//        and heap reordering via percolate up and percolate down operations.
+//***********************************************************************************
 #include "BinaryHeap.h"
 #include <iostream>
 using namespace std;
