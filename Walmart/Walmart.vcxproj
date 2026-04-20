@@ -25,7 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryHeap.cpp" />
-    <ClCompile Include="BinaryHeapDriver.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="LL.cpp" />
   </ItemGroup>
