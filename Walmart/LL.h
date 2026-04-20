@@ -11,6 +11,7 @@
 using namespace std;
 
 //*************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: Node
 //Purpose: This represents a single edge in the adjacency list, storing the connected
 //			vertex, edge weight, and pointer to the next node.
@@ -32,6 +33,7 @@ public:
 };
 
 //*************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: LL (Linked List)
 //Purpose: This represents a linked list used in the adjacency list to store all
 //			edges connected to a single vertex.
@@ -48,6 +50,7 @@ public:
 	LL() : head(nullptr) {};
 
 //*************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: Insert
 //Purpose: Inserts a new node at the beginning of the linked list
 //Incoming: int e (edge weight), int c (connected vertex)
@@ -57,6 +60,7 @@ public:
 	void Insert(int e, T c);
 
 //*************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: Print
 //Purpose: Traverses and displays all nodes in the linked lsit
 //Incoming: None
