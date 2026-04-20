@@ -10,6 +10,11 @@
 #include <iostream>
 using namespace std;
 
+template <class T> class Node;
+template <class T> class LL;
+template <class T> class BinaryHeap;
+
+
 //*************************************************************************************
 //Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: Node
@@ -23,13 +28,13 @@ template <class T>
 class Node
 {
 public:
-	Node* next;
+	Node<T>* next;
 	int weight;
 	T connection;
 
-	Node(int w, T c, Node* node) : weight(w), connection(c), next(node) {};
-	friend class LL;
-	friend class BinaryHeap;
+	Node<T>(int w, T c, Node<T>* node) : weight(w), connection(c), next(node) {};
+	friend class LL<T>;
+	friend class BinaryHeap<T>;
 };
 
 //*************************************************************************************
@@ -45,9 +50,9 @@ template <class T>
 class LL
 {
 public:
-	Node* head;
+	Node<T>* head;
 
-	LL() : head(nullptr) {};
+	LL<T>() : head(nullptr) {};
 
 //*************************************************************************************
 //Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
@@ -69,5 +74,41 @@ public:
 //**************************************************************************************
 	void Print()const;
 };
+
+//********************************************************************************
+// Author: Caleb Ellis (Editted by Chloe)
+// Name: Insert
+// Purpose: Inserts weights in order in LL
+// Incoming: int e, T c
+// Outgoing: updated LL
+// Return: none
+//********************************************************************************
+template <class T>
+void LL<T>::Insert(int e, T c) {
+	head = new Node<T>(e, c, head);
+
+}
+
+
+//********************************************************************************
+// Author: Caleb Ellis (Editted by Chloe)
+// Name: Print
+// Purpose: Traverses and displays all nodes in the linked list 
+// Incoming: none
+// Outgoing: Shows output of connections and weights
+// Return: none
+//********************************************************************************
+template <class T>
+void LL<T>::Print()const
+{
+	Node<T>* temp = head;
+
+	while (temp != nullptr)
+	{
+		cout << temp->connection << " " << temp->weight << " ";
+		temp = temp->next;
+	}
+}
+
 
 #endif
