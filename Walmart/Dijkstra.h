@@ -37,7 +37,7 @@ using namespace std;
 //Outgoing: Shows the output of the shortest distance and path
 //Return: None
 //********************************************************************************
-void dijkstra(LL<int>* graph, int numVertices, int start, int end) {
+void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string names[]) {
 
     int* dist = new int[numVertices];
     int* prev = new int[numVertices];
@@ -120,10 +120,10 @@ void dijkstra(LL<int>* graph, int numVertices, int start, int end) {
     cout << "Path: " << endl;
 
     for (int i = count - 1; i >= 0; i--) {
-        cout << "Step " << (count - i) << ": " << path[i];
+        cout << "Step " << (count - i) << ": " << names[path[i]];
 
         if (i != 0)
-            cout << " -> " << path[i - 1];
+            cout << " -> " << names[path[i - 1]];
 
         cout << endl;
     }
