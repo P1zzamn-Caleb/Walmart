@@ -24,9 +24,7 @@
     <ClInclude Include="LL.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryHeap.cpp" />
     <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="LL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Base_Connections.txt" />
