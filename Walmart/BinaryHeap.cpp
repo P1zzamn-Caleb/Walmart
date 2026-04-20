@@ -10,9 +10,10 @@ using namespace std;
 // Outgoing: heapArray replaced with larger array, allocationSize updated
 // Return: void
 //********************************************************************************
-void BinaryHeap::ResizeArray() {
+template <class T>
+void BinaryHeap<T>::ResizeArray() {
     int newAllocationSize = allocationSize * 2;
-    HeapNode* newArray = new HeapNode[newAllocationSize];
+    HeapNode<T>* newArray = new HeapNode<T>[newAllocationSize];
 
         // Copy from existing array to new array
         for (int i = 0; i < heapSize; i++) {
@@ -33,7 +34,8 @@ void BinaryHeap::ResizeArray() {
 // Outgoing: heapArray memory released
 // Return: none
 //********************************************************************************
-BinaryHeap::~BinaryHeap() {
+template <class T>
+BinaryHeap<T>::~BinaryHeap() {
     delete[] heapArray;
 }
 
@@ -45,9 +47,10 @@ BinaryHeap::~BinaryHeap() {
 // Outgoing: heapArray allocated, heapSize and allocationSize initialized
 // Return: none
 //********************************************************************************
-BinaryHeap::BinaryHeap() {
+template <class T>
+BinaryHeap<T>::BinaryHeap() {
     allocationSize = 10;
-    heapArray = new HeapNode[allocationSize];
+    heapArray = new HeapNode<T>[allocationSize];
     heapSize = 0;
 }
 
@@ -59,7 +62,8 @@ BinaryHeap::BinaryHeap() {
 // Outgoing: none
 // Return: bool - true if full, false otherwise
 //********************************************************************************
-bool BinaryHeap::isFull() {
+template <class T>
+bool BinaryHeap<T>::isFull() {
     return heapSize == allocationSize;
 }
 
@@ -71,7 +75,8 @@ bool BinaryHeap::isFull() {
 // Outgoing: none
 // Return: bool - true if empty, false otherwise
 //********************************************************************************
-bool BinaryHeap::isEmpty() {
+template <class T>
+bool BinaryHeap<T>::isEmpty() {
     return heapSize == 0;
 }
 
@@ -84,7 +89,8 @@ bool BinaryHeap::isEmpty() {
 // Outgoing: heap array updated
 // Return: void
 //********************************************************************************
-void BinaryHeap::insert(int vertex, int distance) {
+template <class T>
+void BinaryHeap<T>::insert(int vertex, T distance) {
     if (isFull()) 
         ResizeArray(); 
 
@@ -101,13 +107,14 @@ void BinaryHeap::insert(int vertex, int distance) {
 // Outgoing: heap reordered after removal
 // Return: HeapNode containing vertex and distance
 //********************************************************************************
-HeapNode BinaryHeap::remove() {
+template <class T>
+HeapNode<T> BinaryHeap<T>::remove() {
     if (heapSize == 0) {
         // cout << "Heap is empty." << endl;
-        return HeapNode{ -1, -1 };
+        return HeapNode<T>{ -1, -1 };
     }
 
-    HeapNode minNode = heapArray[0];
+    HeapNode<T> minNode = heapArray[0];
 
     heapArray[0] = heapArray[heapSize - 1];
     heapSize--;
@@ -129,7 +136,8 @@ HeapNode BinaryHeap::remove() {
 // Return: void
 // // Reference: This function was from the zybook.
 //********************************************************************************
-void BinaryHeap::PercolateUp(int index) {
+template <class T>
+void BinaryHeap<T>::PercolateUp(int index) {
     while (index > 0) {
         // Compute the parent node's index
         int parent = (index - 1) / 2;
@@ -157,7 +165,8 @@ void BinaryHeap::PercolateUp(int index) {
 // Return: void
 // Reference: This function was from the zybook.
 //********************************************************************************
-void BinaryHeap::PercolateDown(int index) {
+template <class T>
+void BinaryHeap<T>::PercolateDown(int index) {
     while (true) {
         int left = 2 * index + 1;
         int right = 2 * index + 2;
@@ -175,3 +184,5 @@ void BinaryHeap::PercolateDown(int index) {
         index = smallest;
     }
 }
+
+template class BinaryHeap<int>;
