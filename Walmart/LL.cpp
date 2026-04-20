@@ -1,7 +1,7 @@
 #include "LL.h"
 
 //********************************************************************************
-// Author: Caleb Ellis (Editted by Chloe)
+// Author: Caleb Ellis, Chloe Byrd, Tori Dean, and Jay Goodroe
 // Name: Insert
 // Purpose: Inserts weights in order in LL
 // Incoming: int e
@@ -15,7 +15,7 @@ void LL::Insert(int e, int c) {
 
 
 //********************************************************************************
-// Author: Caleb Ellis (Editted by Chloe)
+// Author: Caleb Ellis, Chloe Byrd, Tori Dean, and Jay Goodroe
 // Name: Print
 // Purpose: Traverses and displays all nodes in the linked list 
 // Incoming: none
