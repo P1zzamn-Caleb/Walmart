@@ -1,3 +1,11 @@
+//**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
+//Name: Main Driver
+//Purpose: Displays all available aisle options for user selection
+//Incoming: none
+//Outgoing: Console output (list of aisle options)
+//Return: none
+//**************************************************************************************
 #include <iostream>
 #include <fstream>
 #include "LL.h"
@@ -53,6 +61,7 @@ int main() {
 	endVertice = 0;
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: OpenFile
 //Purpose: Opens input file containing graph data
 //Incoming: FILE_NAME constant
@@ -67,6 +76,7 @@ int main() {
 	}
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: DisplayWelcome
 //Purpose: Shows program introduction message to user
 //Incoming: none
@@ -80,6 +90,7 @@ int main() {
 	cout << "Loading store layout...." << endl;
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: ReadVertexCount
 //Purpose: Reads number of vertices from input file
 //Incoming: file stream
@@ -90,6 +101,7 @@ int main() {
 	cout << "Total aisles (vertices): " << numVertices << endl << endl;
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: InitializeGraph
 //Purpose: Creates array of linked lists for adjacency representation 
 //Incoming: numVertices
@@ -99,6 +111,7 @@ int main() {
 	LL<int>* vertices = new LL<int>[numVertices];
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: BuildAdjacencyList
 //Purpose: Reads file and forms adjacency list graph
 //Incoming: file stream data
@@ -129,6 +142,7 @@ int main() {
 	graphData.close();	
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: PrintGraph
 //Purpose: Displays final adjacency list representation of graph
 //Incoming: LL array
@@ -147,6 +161,7 @@ int main() {
 	}
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: UserNavigationMenu
 //Purpose: Allows user to input start and end aisles for navigation
 //Incoming: user input (start, end, choice)
@@ -181,6 +196,7 @@ int main() {
 	} while (choice == 'y' || choice == 'Y');
 
 //**************************************************************************************
+//
 //Name: Cleanup
 //Purpose: Frees dynamically allocated memory
 //Incoming: vertices array
@@ -195,6 +211,7 @@ return 0;
 }
 
 //**************************************************************************************
+//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
 //Name: LocationsMenu
 //Purpose: Displays all available aisle options for user selection
 //Incoming: none
