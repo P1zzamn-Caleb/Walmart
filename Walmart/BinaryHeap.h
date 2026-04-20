@@ -1,3 +1,13 @@
+//**********************************************************************
+//Author: Chloe Byrd, Jay Goodroe, Caleb Ellis, and Tori Dean
+//Start Date: April 16, 2026
+//Name: CS 355 Walmart Graph Assignment - Binary Heap
+//Description: This file implements a templated Binary Heap used for  
+//        priority queue operations in Dijkstra's algorithm. It stores
+//        vertex distance pairs and maintains heap order based on minimum 
+//        distance values.
+//**********************************************************************
+
 #ifndef _BINARY_HEAP_H
 #define _BINARY_HEAP_H
 #include <iostream>
