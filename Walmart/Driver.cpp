@@ -1,11 +1,10 @@
 //**************************************************************************************
 //Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
-//Start Date: April 16, 2026
-//Name: CS 355 Walmart Graph Assignment - Main Driver
-//Description: This file is used as the driver program for the Walmart weighted 
-//				graph navigation system. It reads graph data from a file, builds an 
-//				adjacency list using linked lists, displays the warehouse map and allows
-//				user to find shortest paths between aisles using Dijkstra's algorithm.
+//Name: Main Driver
+//Purpose: Displays all available aisle options for user selection
+//Incoming: none
+//Outgoing: Console output (list of aisle options)
+//Return: none
 //**************************************************************************************
 #include <iostream>
 #include <fstream>
