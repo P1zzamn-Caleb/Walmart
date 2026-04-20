@@ -11,10 +11,10 @@ using namespace std;
 //Outgoing: Stores heap node data
 //Return: none
 //********************************************************************************************
-
+template <class T>
 struct HeapNode {
     int vertex;
-    int distance;
+    T distance;
 };
 
 //********************************************************************************************
@@ -28,9 +28,10 @@ struct HeapNode {
 //***************************
 //DESTRUCTOR
 //***************************
+template <class T>
 class BinaryHeap {
 private:
-    HeapNode* heapArray;
+    HeapNode<T>* heapArray;
     int allocationSize;
     int heapSize;
 
@@ -76,7 +77,7 @@ public:
 //Outgoing: Updated heap structure
 //Return: HeapNode (minimum element)
 //********************************************************************************************
-    HeapNode remove();
+    HeapNode<T> remove();
 };
 
 #endif
