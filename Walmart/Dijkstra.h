@@ -120,10 +120,10 @@ void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string 
     cout << "Path: " << endl;
 
     for (int i = count - 1; i >= 0; i--) {
-        cout << "Step " << (count - i) << ": " << names[path[i]];
+        cout << "Step " << (count - i) << ": " << names[path[i]] << " (" << path[i] << ")";
 
         if (i != 0)
-            cout << " -> " << names[path[i - 1]];
+            cout << " -> " << names[path[i - 1]] << " (" << path[i - 1] << ")";
 
         cout << endl;
     }
