@@ -8,7 +8,8 @@
 // Outgoing: updated LL
 // Return: none
 //********************************************************************************
-void LL::Insert(int e, int c) {
+template <class T>
+void LL<T>::Insert(int e, T c) {
 	head = new Node(e, c, head);
 		
 }
@@ -22,7 +23,8 @@ void LL::Insert(int e, int c) {
 // Outgoing: Shows output of connections and weights
 // Return: none
 //********************************************************************************
-void LL::Print()const
+template <class T>
+void LL<T>::Print()const
 {
 	Node* temp = head;
 

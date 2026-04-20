@@ -48,7 +48,7 @@ int main() {
 	int numVertices = 0, 
 	thisVertice = -1, 
 	connectionWeight = -1, 
-	connectionVertice = 0,
+	connectionVertice = 0, // connection is an int for this implementation
 	startVertice = 0, 
 	endVertice = 0;
 
@@ -96,7 +96,7 @@ int main() {
 //Outgoing: dynamic LL array created
 //Return: none
 //**************************************************************************************
-	LL* vertices = new LL[numVertices];
+	LL<int>* vertices = new LL<int>[numVertices];
 
 //**************************************************************************************
 //Name: BuildAdjacencyList

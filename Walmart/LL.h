@@ -18,14 +18,15 @@ using namespace std;
 //Outgoing: Initializes a Node object
 //Return: none
 //**************************************************************************************
+template <class T>
 class Node
 {
 public:
 	Node* next;
 	int weight;
-	int connection;
+	T connection;
 
-	Node(int w, int c, Node* node) : weight(w), connection(c), next(node) {};
+	Node(int w, T c, Node* node) : weight(w), connection(c), next(node) {};
 	friend class LL;
 	friend class BinaryHeap;
 };
@@ -38,6 +39,7 @@ public:
 //Outgoing: Initializes an empty linked list
 //Return: none
 //**************************************************************************************
+template <class T>
 class LL
 {
 public:
@@ -52,7 +54,7 @@ public:
 //Outgoing: Updates the linked list structure
 //Return: none
 //**************************************************************************************
-	void Insert(int e, int c);
+	void Insert(int e, T c);
 
 //*************************************************************************************
 //Name: Print
