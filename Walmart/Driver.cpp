@@ -165,11 +165,15 @@ int main() {
 	do {
 		LocationsMenu(); // optional but GOOD for demo
 
-		cout << endl << "Enter starting aisle: ";
-		cin >> start;
-
-		cout << "Enter destination aisle: ";
-		cin >> end;
+		do
+		{
+			cout << endl << "Enter starting aisle: ";
+			cin >> start;
+		} while (start < 0 || start >= numVertices);
+		do {
+			cout << "Enter destination aisle: ";
+			cin >> end;
+		} while (end < 0 || end >= numVertices);
 
 		cout << endl << "Finding shortest path..." << endl;
 
