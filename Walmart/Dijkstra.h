@@ -1,4 +1,4 @@
-﻿//********************************************************************************
+//********************************************************************************
 // Author: Jay Goodroe & Caleb Ellis
 // Name: Dijkstra Shortest Path Algorithm
 // Purpose: Computes the shortest path from a starting vertex to all other
@@ -37,7 +37,7 @@ using namespace std;
 //Outgoing: Shows the output of the shortest distance and path
 //Return: None
 //********************************************************************************
-void dijkstra(LL* graph, int numVertices, int start, int end) {
+void dijkstra(LL<int>* graph, int numVertices, int start, int end) {
 
     int* dist = new int[numVertices];
     int* prev = new int[numVertices];
@@ -51,13 +51,13 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
 
     dist[start] = 0;
 
-    BinaryHeap pq;
+    BinaryHeap<int> pq;
 
     pq.insert(start, 0);
 
     while (!pq.isEmpty()) {
 
-        HeapNode node = pq.remove();
+        HeapNode<int> node = pq.remove();
 
         if (node.vertex == -1)
             break;
@@ -67,7 +67,7 @@ void dijkstra(LL* graph, int numVertices, int start, int end) {
         if (!visited[u]) {
             visited[u] = true;
 
-            Node* temp = graph[u].head;
+            Node<int>* temp = graph[u].head;
 
             while (temp != nullptr) {
                 int v = temp->connection;
