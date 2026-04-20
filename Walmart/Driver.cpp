@@ -48,7 +48,7 @@ int main() {
 	int numVertices = 0, 
 	thisVertice = -1, 
 	connectionWeight = -1, 
-	connectionVertice = 0,
+	connectionVertice = 0, // connection is an int for this implementation
 	startVertice = 0, 
 	endVertice = 0;
 
@@ -96,7 +96,7 @@ int main() {
 //Outgoing: dynamic LL array created
 //Return: none
 //**************************************************************************************
-	LL* vertices = new LL[numVertices];
+	LL<int>* vertices = new LL<int>[numVertices];
 
 //**************************************************************************************
 //Name: BuildAdjacencyList
@@ -165,15 +165,11 @@ int main() {
 	do {
 		LocationsMenu(); // optional but GOOD for demo
 
-		do
-		{
-			cout << endl << "Enter starting aisle: ";
-			cin >> start;
-		} while (start < 0 || start >= numVertices);
-		do {
-			cout << "Enter destination aisle: ";
-			cin >> end;
-		} while (end < 0 || end >= numVertices);
+		cout << endl << "Enter starting aisle: ";
+		cin >> start;
+
+		cout << "Enter destination aisle: ";
+		cin >> end;
 
 		cout << endl << "Finding shortest path..." << endl;
 
