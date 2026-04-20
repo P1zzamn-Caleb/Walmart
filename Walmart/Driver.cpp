@@ -26,30 +26,31 @@ const string FILE_NAME = "ScooterWeights.txt";
 void LocationsMenu();
 
 int main() {
-	string names[] = {
+	const string LOCATIONS[23] = {
 	"Entrance",
 	"Bread",
 	"Produce",
 	"Checkout",
-	"Dairy",
-	"Toys",
-	"Sports",
-	"Auto",
-	"Clothing",
+	"Self-checkout",
 	"Health",
 	"Personal Care",
 	"Frozen",
+	"Women's Clothing",
+	"Men's Clothing",
+	"Party Supplies",
 	"Kitchen",
 	"Garden",
 	"Deli",
+	"Alcohol",
 	"Shoes",
-	"Kids Clothing",
+	"Kid's Clothing",
 	"Arts & Crafts",
-	"Home",
-	"Party",
-	"Electronics",
-	"Unknown"
-	};
+	"Home/Furniture",
+	"Auto",
+	"Dairy",
+	"Toys",
+	"Sports"
+};
 
 	ifstream graphData;
 	
@@ -180,15 +181,20 @@ int main() {
 	do {
 		LocationsMenu(); // optional but GOOD for demo
 
+		do
+		{
 		cout << endl << "Enter starting aisle: ";
 		cin >> start;
-
+		} while (start < 0 || start >= numVertices);
+		do {
 		cout << "Enter destination aisle: ";
 		cin >> end;
+		} while (end < 0 || end >= numVertices);
 
-		cout << endl << "Finding shortest path..." << endl;
+		cout << endl << "Calculating shortest path from "
+		<< LOCATIONS[start] << " to " << LOCATIONS[end] << "..." << endl;
 
-		dijkstra(vertices, numVertices, start, end);
+		dijkstra(vertices, numVertices, start, end, LOCATIONS);
 
 		cout << endl << "Try another route? (y/n): ";
 		cin >> choice;
@@ -222,28 +228,10 @@ void LocationsMenu()
 {
 	cout << endl << "****************************" << endl;
 	cout << "Location Options:" << endl;
-	cout << "\"0\" - Entrance" << endl;
-	cout << "\"1\" - Bread" << endl;
-	cout << "\"2\" - Produce" << endl;
-	cout << "\"3\" - Checkout" << endl;
-	cout << "\"5\" - Health" << endl;
-	cout << "\"6\" - Personal Care" << endl;
-	cout << "\"7\" - Frozen" << endl;
-	cout << "\"8\" - Women's Clothing" << endl;
-	cout << "\"9\" - Men's Clothing" << endl;
-	cout << "\"10\" - Party Supplies" << endl;
-	cout << "\"11\" - Kitchen" << endl;
-	cout << "\"12\" - Garden" << endl;
-	cout << "\"13\" - Deli" << endl;
-	cout << "\"14\" - Alcohol" << endl;
-	cout << "\"15\" - Shoes" << endl;
-	cout << "\"16\" - Kid's Clothing" << endl;
-	cout << "\"17\" - Arts & Crafts" << endl;
-	cout << "\"18\" - Home/Furniture" << endl;
-	cout << "\"19\" - Auto" << endl;
-	cout << "\"20\" - Dairy" << endl;
-	cout << "\"21\" - Toys" << endl;
-	cout << "\"22\" - Sports" << endl;
+	for (int i = 0; i < 23; i++)
+	{
+		cout << "\"" << i << "\" - " << LOCATIONS[i] << endl;
+	}
 	cout << "****************************" << endl;
 }
 
