@@ -25,7 +25,6 @@ const string FILE_NAME = "ScooterWeights.txt";
 //*************************************************************************************
 void LocationsMenu();
 
-int main() {
 	const string LOCATIONS[23] = {
 	"Entrance",
 	"Bread",
@@ -51,6 +50,8 @@ int main() {
 	"Toys",
 	"Sports"
 };
+
+int main() {
 
 	ifstream graphData;
 	
