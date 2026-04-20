@@ -1,12 +1,10 @@
 //**********************************************************************
 //Author: Chloe Byrd, Jay Goodroe, Caleb Ellis, and Tori Dean
-//Name: Binary Heap Test Driver
-//Purpose: Tests the BinaryHeap by reading graph data from a file,
+//Start Date: April 16, 2026
+//Name: CS 355 Walmart Graph Assignment - Binary Heap Test Driver
+//Description: Tests the BinaryHeap by reading graph data from a file,
 //        inserting adjacent vertices into the heap, and removing them 
 //        in priority order.
-//Incoming: File input (ScooterWeights.txt)
-//Outgoing: Shows output revealing inserted values and removal order
-//Return: int (Exit for the program status)
 //**********************************************************************
 #include <iostream>
 #include <fstream>
