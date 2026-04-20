@@ -1,3 +1,13 @@
+//**********************************************************************************
+//Authors: Caleb Ellis, Tori Dean, Chloe Byrd, Jay Goodroe
+//Date: April 16, 2020
+//Name: CS 355 Walmart Graph Assignment
+//Description: This file holds the driver program used to test and execute the
+//				Walmart graph implementation. It handles input, runs algorithms,
+//				and displays results using the linked list and other data structures.
+//***********************************************************************************
+
+
 #include "LL.h"
 
 //********************************************************************************
