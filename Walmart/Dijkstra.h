@@ -22,12 +22,13 @@
 #include "BinaryHeap.h"
 #include "LL.h"
 #include <iostream>
-#include <climits>
+#include <limits>
 
 using namespace std;
 
 //********************************************************************************
-//Name: dijkstra
+// Author: Jay Goodroe, Caleb Ellis, Tori Dean (edited)
+// Name: dijkstra
 //Purpose: Computes the shortest path from the starting vertex to a destination
 //        vertex using Dijkstra's Algorithm
 //Incoming: LL* graph (adjacency list)
@@ -37,27 +38,28 @@ using namespace std;
 //Outgoing: Shows the output of the shortest distance and path
 //Return: None
 //********************************************************************************
-void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string names[]) {
+template <class T>
+void dijkstra(LL<T>* graph, int numVertices, int start, int end, const string names[]) {
 
-    int* dist = new int[numVertices];
+    T* dist = new T[numVertices];
     int* prev = new int[numVertices];
     bool* visited = new bool[numVertices];
 
     for (int i = 0; i < numVertices; i++) {
-        dist[i] = INT_MAX;
+        dist[i] = std::numeric_limits<T>::max();
         prev[i] = -1;
         visited[i] = false;
     }
 
     dist[start] = 0;
 
-    BinaryHeap<int> pq;
+    BinaryHeap<T> pq;
 
     pq.insert(start, 0);
 
     while (!pq.isEmpty()) {
 
-        HeapNode<int> node = pq.remove();
+        HeapNode<T> node = pq.remove();
 
         if (node.vertex == -1)
             break;
@@ -67,13 +69,13 @@ void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string 
         if (!visited[u]) {
             visited[u] = true;
 
-            Node<int>* temp = graph[u].head;
+            Node<T>* temp = graph[u].getHead();
 
             while (temp != nullptr) {
                 int v = temp->connection;
-                int weight = temp->weight;
+                T weight = temp->weight;
 
-                if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+                if (dist[u] != std::numeric_limits<T>::max() && dist[u] + weight < dist[v]) {
                     dist[v] = dist[u] + weight;
                     prev[v] = u;
                     pq.insert(v, dist[v]);
@@ -88,7 +90,7 @@ void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string 
 //Name: CheckPath
 //Purpose: Determines if a valid path exists to destination
 //********************************************************************************
-    if (dist[end] == INT_MAX) {
+    if (dist[end] == std::numeric_limits<T>::max()) {
         cout << "No path found." << endl;
         delete[] dist;
         delete[] prev;
@@ -132,7 +134,7 @@ void dijkstra(LL<int>* graph, int numVertices, int start, int end, const string 
 
 //********************************************************************************
 //Name: Cleanup
-//Purpose:Frees dynamically allocated memory
+//Purpose: Frees dynamically allocated memory
 //********************************************************************************
     delete[] dist;
     delete[] prev;

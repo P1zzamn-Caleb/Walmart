@@ -2,8 +2,8 @@
 // Authors: Caleb Ellis, Tori Dean, Chloe Byrd, Jay Goodroe
 // Start Date: 16. April 2026
 // Name: CS 355 Walmart Graph assignement
-// Description: This file contains the LL that will implement chain linking into a
-//				hashing table.
+// Description: This file contains the LL that will be used in the adjacency list to store all
+//			edges connected to a single vertex and their weights.
 //*************************************************************************************
 #ifndef _LL_H
 #define _LL_H
@@ -29,10 +29,11 @@ class Node
 {
 public:
 	Node<T>* next;
-	int weight;
-	T connection;
+	T weight;
+	int connection;
 
-	Node<T>(int w, T c, Node<T>* node) : weight(w), connection(c), next(node) {};
+	Node<T>(T w, int c, Node<T>* node) : weight(w), connection(c), next(node) {};
+
 	friend class LL<T>;
 	friend class BinaryHeap<T>;
 };
@@ -43,37 +44,54 @@ public:
 //Purpose: This represents a linked list used in the adjacency list to store all
 //			edges connected to a single vertex.
 //Incoming: none
-//Outgoing: Initializes an empty linked list
+//Outgoing: Provides a linked list representation of a vertex's adjacency list
 //Return: none
 //**************************************************************************************
 template <class T>
 class LL
 {
-public:
 	Node<T>* head;
-
+public:
 	LL<T>() : head(nullptr) {};
+	~LL();
 
-//*************************************************************************************
-//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
-//Name: Insert
-//Purpose: Inserts a new node at the beginning of the linked list
-//Incoming: int e (edge weight), int c (connected vertex)
-//Outgoing: Updates the linked list structure
-//Return: none
-//**************************************************************************************
-	void Insert(int e, T c);
-
-//*************************************************************************************
-//Author: Chloe Byrd, Caleb Ellis, Tori Dean, Jay Goodroe
-//Name: Print
-//Purpose: Traverses and displays all nodes in the linked lsit
-//Incoming: None
-//Outgoing: Shows output of connections and weights
-//Return: none
-//**************************************************************************************
+	Node<T>* getHead() const;
+	void Insert(T e, int c);
 	void Print()const;
 };
+
+//********************************************************************************
+// Author: Tori Dean
+// Name: ~LL
+// Purpose: Frees memory for all dynamicaly allocated nodes in the linked list.
+// Incoming: none
+// Outgoing: none
+// Return: none
+//********************************************************************************
+
+template <class T>
+LL<T>::~LL() {
+	Node<T>* current = head;
+	while (current != nullptr) {
+		Node<T>* toDelete = current;
+		current = current->next;
+		delete toDelete;
+	}
+	head = nullptr;
+}
+
+//********************************************************************************
+// Author: Tori Dean
+// Name: getHead
+// Purpose: Returns a pointer to the head of the linked list
+// Incoming: none
+// Outgoing: none
+// Return: Pointer to the first/head node in the list (Node<T>*)
+//********************************************************************************
+template <class T>
+Node<T>* LL<T>::getHead() const {
+	return head;
+}
 
 //********************************************************************************
 // Author: Caleb Ellis (Editted by Chloe)
@@ -84,7 +102,7 @@ public:
 // Return: none
 //********************************************************************************
 template <class T>
-void LL<T>::Insert(int e, T c) {
+void LL<T>::Insert(T e, int c) {
 	head = new Node<T>(e, c, head);
 
 }
