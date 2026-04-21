@@ -28,15 +28,13 @@ struct HeapNode {
 
 //********************************************************************************************
 //Name: BinaryHeap
-//Purpose: Frees dynamically allocated memory used by heap
+//Purpose: This represents a binary min-heap used as a priority queue to store
+//         vertices and their associated distance values for shortest path calculation.
 //Incoming: None
-//Outgoing: Deallocates heap memory
+//Outgoing: Provides a priority queue structure for shortest path processing
 //Return: None
 //********************************************************************************************
 
-//***************************
-//DESTRUCTOR
-//***************************
 template <class T>
 class BinaryHeap {
 private:
@@ -52,168 +50,11 @@ public:
     BinaryHeap();
     ~BinaryHeap();
 
-    //********************************************************************************************
-    //Name: isFull
-    //Purpose: Checks if heap has reached maximum capacity
-    //Incoming: None
-    //Outgoing: Boolean result
-    //Return: None
-    //********************************************************************************************
     bool isFull();
-
-    //********************************************************************************************
-    //Name: isEmpty
-    //Purpose: Checks if heap contains no elements
-    //Incoming: None
-    //Outgoing: Boolean result
-    //Return: Bool
-    //********************************************************************************************
     bool isEmpty();
-
-    //********************************************************************************************
-    //Name: insert
-    //Purpose: Inserts a new vertex distance pair into the heap
-    //Incoming: int vertex, int distance
-    //Outgoing: Updated heap structure
-    //Return: None
-    //********************************************************************************************
-    void insert(int vertex, int distance);
-
-    //********************************************************************************************
-    //Name: remove
-    //Purpose: Removes and returns the minimum distance node from the heap
-    //Incoming: None
-    //Outgoing: Updated heap structure
-    //Return: HeapNode (minimum element)
-    //********************************************************************************************
+    void insert(int vertex, T distance);
     HeapNode<T> remove();
 };
-
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: ResizeArray
-// Purpose: Doubles heap array capacity when full.
-// Incoming: none
-// Outgoing: heapArray replaced with larger array, allocationSize updated
-// Return: void
-//********************************************************************************
-template <class T>
-void BinaryHeap<T>::ResizeArray() {
-    int newAllocationSize = allocationSize * 2;
-    HeapNode<T>* newArray = new HeapNode<T>[newAllocationSize];
-
-    // Copy from existing array to new array
-    for (int i = 0; i < heapSize; i++) {
-        newArray[i] = heapArray[i];
-    }
-
-    // Delete old array and set pointer to new
-    delete[] heapArray;
-    heapArray = newArray;
-    allocationSize = newAllocationSize;
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: ~BinaryHeap (Destructor)
-// Purpose: Frees dynamically allocated heap memory
-// Incoming: none
-// Outgoing: heapArray memory released
-// Return: none
-//********************************************************************************
-template <class T>
-BinaryHeap<T>::~BinaryHeap() {
-    delete[] heapArray;
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: BinaryHeap Constructor
-// Purpose: Initializes heap with default capacity and zero size
-// Incoming: none
-// Outgoing: heapArray allocated, heapSize and allocationSize initialized
-// Return: none
-//********************************************************************************
-template <class T>
-BinaryHeap<T>::BinaryHeap() {
-    allocationSize = 10;
-    heapArray = new HeapNode<T>[allocationSize];
-    heapSize = 0;
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: isFull
-// Purpose: Checks whether the heap array has reached capacity.
-// Incoming: none
-// Outgoing: none
-// Return: bool - true if full, false otherwise
-//********************************************************************************
-template <class T>
-bool BinaryHeap<T>::isFull() {
-    return heapSize == allocationSize;
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: isEmpty
-// Purpose: Checks whether the heap array is empty.
-// Incoming: none
-// Outgoing: none
-// Return: bool - true if empty, false otherwise
-//********************************************************************************
-template <class T>
-bool BinaryHeap<T>::isEmpty() {
-    return heapSize == 0;
-}
-
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: insert
-// Purpose: Inserts a (vertex, distance) pair into min-heap and restores heap order
-// Incoming: vertex ID and distance value
-// Outgoing: heap array updated
-// Return: void
-//********************************************************************************
-template <class T>
-void BinaryHeap<T>::insert(int vertex, int distance) {
-    if (isFull())
-        ResizeArray();
-
-    heapArray[heapSize] = { vertex, distance };
-    PercolateUp(heapSize);
-    heapSize++;
-}
-
-//********************************************************************************
-// Author: Jay Goodroe
-// Name: remove
-// Purpose: Removes and returns node with smallest distance from heap root
-// Incoming: none
-// Outgoing: heap reordered after removal
-// Return: HeapNode containing vertex and distance
-//********************************************************************************
-template <class T>
-HeapNode<T> BinaryHeap<T>::remove() {
-    if (heapSize == 0) {
-        // cout << "Heap is empty." << endl;
-        return HeapNode<T>{ -1, -1 };
-    }
-
-    HeapNode<T> minNode = heapArray[0];
-
-    heapArray[0] = heapArray[heapSize - 1];
-    heapSize--;
-
-    if (heapSize > 0) {
-        PercolateDown(0);
-    }
-
-    return minNode;
-}
-
 
 //********************************************************************************
 // Author: Jay Goodroe
@@ -230,7 +71,7 @@ void BinaryHeap<T>::PercolateUp(int index) {
         // Compute the parent node's index
         int parent = (index - 1) / 2;
 
-        // Check for a violation of the max-heap property
+        // Check for a violation of the min-heap property
         if (heapArray[index].distance >= heapArray[parent].distance) {
             // No violation, so percolate up is done.
             break;
@@ -273,6 +114,128 @@ void BinaryHeap<T>::PercolateDown(int index) {
     }
 }
 
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: ResizeArray
+// Purpose: Doubles heap array capacity when full.
+// Incoming: none
+// Outgoing: heapArray replaced with larger array, allocationSize updated
+// Return: void
+//********************************************************************************
+template <class T>
+void BinaryHeap<T>::ResizeArray() {
+    int newAllocationSize = allocationSize * 2;
+    HeapNode<T>* newArray = new HeapNode<T>[newAllocationSize];
 
+    // Copy from existing array to new array
+    for (int i = 0; i < heapSize; i++) {
+        newArray[i] = heapArray[i];
+    }
+
+    // Delete old array and set pointer to new
+    delete[] heapArray;
+    heapArray = newArray;
+    allocationSize = newAllocationSize;
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: BinaryHeap Constructor
+// Purpose: Initializes heap with default capacity and zero size
+// Incoming: none
+// Outgoing: heapArray allocated, heapSize and allocationSize initialized
+// Return: none
+//********************************************************************************
+template <class T>
+BinaryHeap<T>::BinaryHeap() {
+    allocationSize = 10;
+    heapArray = new HeapNode<T>[allocationSize];
+    heapSize = 0;
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: ~BinaryHeap (Destructor)
+// Purpose: Frees dynamically allocated heap memory
+// Incoming: none
+// Outgoing: heapArray memory released
+// Return: none
+//********************************************************************************
+template <class T>
+BinaryHeap<T>::~BinaryHeap() {
+    delete[] heapArray;
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: isFull
+// Purpose: Checks whether the heap array has reached capacity.
+// Incoming: none
+// Outgoing: none
+// Return: bool - true if full, false otherwise
+//********************************************************************************
+template <class T>
+bool BinaryHeap<T>::isFull() {
+    return heapSize == allocationSize;
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: isEmpty
+// Purpose: Checks whether the heap array is empty.
+// Incoming: none
+// Outgoing: none
+// Return: bool - true if empty, false otherwise
+//********************************************************************************
+template <class T>
+bool BinaryHeap<T>::isEmpty() {
+    return heapSize == 0;
+}
+
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: insert
+// Purpose: Inserts a (vertex, distance) pair into min-heap and restores heap order
+// Incoming: vertex ID and distance value
+// Outgoing: heap array updated
+// Return: void
+//********************************************************************************
+template <class T>
+void BinaryHeap<T>::insert(int vertex, T distance) {
+    if (isFull())
+        ResizeArray();
+
+    heapArray[heapSize] = { vertex, distance };
+    PercolateUp(heapSize);
+    heapSize++;
+}
+
+//********************************************************************************
+// Author: Jay Goodroe
+// Name: remove
+// Purpose: Removes and returns node with smallest distance from heap root
+// Incoming: none
+// Outgoing: heap reordered after removal
+// Return: HeapNode containing vertex and distance
+//********************************************************************************
+template <class T>
+HeapNode<T> BinaryHeap<T>::remove() {
+    if (heapSize == 0) {
+        // cout << "Heap is empty." << endl;
+        return HeapNode<T>{ -1, T() };
+    }
+
+    HeapNode<T> minNode = heapArray[0];
+
+    heapArray[0] = heapArray[heapSize - 1];
+    heapSize--;
+
+    if (heapSize > 0) {
+        PercolateDown(0);
+    }
+
+    return minNode;
+}
 
 #endif
